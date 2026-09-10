@@ -7,7 +7,8 @@
 - v1 已完成并在真实公开数据上跑通：8 个文件、训练 22 个正常窗口、测试 42 个窗口（31 个故障）。
 - 结果：方法 A（3σ RMS 阈值）F1 = 1.000；方法 B（马氏距离）召回率 1.000、精确率 0.775（误报偏多）。
 - 已生成 `outputs/report.md` 与 `docs/figures/` 结果图；README 已写成作品介绍。
-- 待办：创建 GitHub 新仓库 `motor-health-monitor` 并推送；随后开始 v2 跨数据集验证。
+- 已完成：创建并推送 GitHub 新仓库 motor-health-monitor（2026-09-10）。
+- 下一步：v2 跨数据集泛化验证（MFPT → NASA IMS）。
 ## 学生目标与背景
 
 - 自动化专业，本科大三，预计 2028 年毕业。
@@ -23,7 +24,7 @@
 
 ## 已完成
 
-- GitHub 仓库：<https://github.com/Jay-zhou114514/My-try>
+- GitHub 仓库：<https://github.com/Jay-zhou114514/motor-health-monitor>（v1 已完成并上传，2026-09-10）
 - 本地项目目录：`C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor`
 - Git 已配置、远程 `origin` 已关联、项目已成功推送到 `main` 分支。
 - 已创建并运行第一个 Python 原型：
@@ -77,5 +78,6 @@ git push
 ## 红鸟挑战营准备原则
 
 材料与面试不能只展示技术。要保留“真实需求—问题定义—多个方案—原型—测试—风险与改进”的证据，并持续练习团队协作、表达、系统思维与英文项目介绍。
+
 
 
