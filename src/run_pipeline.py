@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 from datetime import date
 
 import numpy as np
@@ -58,6 +59,7 @@ def main() -> None:
     records = data_loading.load_records(data_loading.MINIMAL_RELATIVE_FILES)
     train_records = [r for r in records if r["split"] == "train"]
     test_records = [r for r in records if r["split"] == "test"]
+    test_counts = Counter(r["condition"] for r in test_records)
     print(
         f"读取 {len(records)} 个文件："
         f"训练 {len(train_records)} 个（正常），测试 {len(test_records)} 个"
@@ -162,7 +164,9 @@ def main() -> None:
         "",
         f"- 采样率：{sample_rate:g} Hz",
         f"- 窗口长度：{WINDOW_SEC} 秒，步长 {STEP_SEC} 秒（50% 重叠）",
-        "- 训练：2 个正常基线文件；测试：1 个正常基线 + 2 个外圈故障 + 2 个内圈故障文件。",
+        f"- 训练：{len(train_records)} 个正常基线文件；测试：{len(test_records)} 个文件"
+        f"（正常 {test_counts.get('normal', 0)}，外圈故障 {test_counts.get('outer_race_fault', 0)}，"
+        f"内圈故障 {test_counts.get('inner_race_fault', 0)}）。",
         "",
         "## 3. 方法",
         "",
@@ -228,4 +232,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 

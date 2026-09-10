@@ -121,18 +121,25 @@ def _load_mat_variables(path: Path) -> dict[str, object]:
             "python -m pip install scipy"
         ) from exc
 
-    raw = loadmat(str(path))
+    raw = loadmat(str(path), squeeze_me=False, struct_as_record=False)
     variables: dict[str, object] = {}
+    sources: dict[str, object] = dict(raw)
+
+    # 数据文件把信号与实验参数放在名为 bearing 的结构体里，
+    # 故障特征频率（BPFO 等）则直接放在文件顶层，这里合并处理。
+    bearing = raw.get("bearing")
+    if bearing is not None:
+        struct = np.asarray(bearing).reshape(-1)
+        if struct.size and hasattr(struct[0], "_fieldnames"):
+            for key in struct[0]._fieldnames:
+                sources[key] = getattr(struct[0], key)
+
     for key in ("gs", "sr", "rate", "load", "BPFO", "BPFI", "FTF", "BSF"):
-        if key not in raw:
+        if key not in sources:
             continue
-        value = raw[key]
-        array = np.asarray(value).squeeze()
+        array = np.asarray(sources[key]).squeeze()
         if array.dtype.kind in "fc":
-            if array.ndim == 0:
-                variables[key] = float(array)
-            else:
-                variables[key] = array.flatten().astype(float)
+            variables[key] = float(array) if array.ndim == 0 else array.flatten().astype(float)
         elif array.dtype.kind in "iu":
             variables[key] = float(array) if array.ndim == 0 else array.flatten().astype(float)
     return variables
@@ -174,3 +181,4 @@ def load_records(
         }
         records.append(record)
     return records
+
