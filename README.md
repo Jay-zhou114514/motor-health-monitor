@@ -36,6 +36,9 @@
 - **方法 A（基线）：3σ 阈值法。** 只用 RMS，报警线 = 正常窗口均值 + 3 倍标准差。
 - **方法 B：马氏距离法。** 综合 RMS、峰均比、峭度、谱质心四个特征，
   用正常窗口估计均值与协方差，以正常训练窗口距离的第 99 百分位为报警线。
+- **故障类型诊断：包络谱分析。** 检出异常后，用希尔伯特变换取包络、
+  再看包络谱中轴承特征频率（BPFO/BPFI）处是否出现远高于本底的尖峰，
+  从而判断是外圈还是内圈故障（可解释、零训练）。
 
 ## 结果（窗口级）
 
@@ -81,6 +84,7 @@ python src/run_pipeline.py
 motor-health-monitor/
 ├── README.md
 ├── requirements.txt
+├── tests/             # 单元测试（pytest）
 ├── docs/
 │   ├── ROADMAP.md        # 项目路线图与差异化策略
 │   └── figures/          # README 展示用的结果图
@@ -90,6 +94,7 @@ motor-health-monitor/
     ├── data_loading.py   # 下载并读取真实数据
     ├── features.py       # 窗口特征提取
     ├── detection.py      # 两种异常检测方法
+    ├── cost_analysis.py  # 成本敏感的报警线选择
     ├── evaluate.py       # 评估指标
     ├── plotting.py       # 图表
     ├── download_data.py  # 数据下载入口
@@ -105,9 +110,32 @@ motor-health-monitor/
 
 ## 下一步（详见 docs/ROADMAP.md）
 
-1. 用维护成本（漏报 vs 误报代价）来决定报警阈值，而不是固定 3σ。
+1. ~~用维护成本（漏报 vs 误报代价）来决定报警阈值~~ 已完成：`src/cost_analysis.py`
+   在给定"漏报:误报代价倍率"下扫描报警线、选出总代价最低的一条（见下方"成本视角"）。
 2. 跨数据集验证：在另一套试验台数据上测试，检验方法是否"只认一套数据"。
 3. 条件允许后，用 ESP32 + 低成本加速度计采集自己的数据。
+
+## 成本视角：报警线应该设多高？
+
+F1 把误报和漏报看得同样重，但真实工厂里两者代价不同：
+误报浪费一次停机检查，漏报可能让轴承坏在运行中。
+`src/cost_analysis.py` 把一次漏报的代价设为一次误报的 N 倍（N 可调），
+扫描报警线并选出总代价最低的一条：
+
+- 本数据集上方法 A 在 1～50 倍的所有代价假设下最优报警线都稳定在约 2.2σ
+  （正常与故障分得很开，阈值不敏感）——这本身是个有用的结论：
+  **只有当数据更难、或训练/测试分布漂移时，成本分析才真正开始起作用**，
+  这正是 v2 跨数据集验证要回答的问题。
+- 报告与图表见 `outputs/report.md` 第 5 节与 `outputs/figures/cost_curves.png`。
+
+## 测试
+
+```powershell
+python -m pip install -r requirements.txt
+python -m pytest tests
+```
+
+16 个单元测试覆盖特征提取、两种检测器、评估指标与成本分析。
 
 ## English summary
 
