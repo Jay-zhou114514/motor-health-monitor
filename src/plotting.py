@@ -61,27 +61,30 @@ def plot_feature_space(
         alpha=0.7,
         label="True fault",
     )
-    false_alarm = true_series & ~prediction_series
-    missed = ~true_series & prediction_series
-    if false_alarm.any():
+    # 名称必须与定义一致，否则容易读反：
+    # 漏报 Missed detection (false negative) = 实际故障 & 预测正常
+    # 误报 False alarm (false positive)     = 实际正常 & 预测异常
+    missed_detection = true_series & ~prediction_series
+    false_alarm = ~true_series & prediction_series
+    if missed_detection.any():
         ax.scatter(
-            table.loc[false_alarm, "rms"],
-            table.loc[false_alarm, "kurtosis"],
+            table.loc[missed_detection, "rms"],
+            table.loc[missed_detection, "kurtosis"],
             marker="X",
             s=120,
             facecolors="none",
             edgecolors="k",
-            label="Missed (false negative)",
+            label="Missed detection (false negative)",
         )
-    if missed.any():
+    if false_alarm.any():
         ax.scatter(
-            table.loc[missed, "rms"],
-            table.loc[missed, "kurtosis"],
+            table.loc[false_alarm, "rms"],
+            table.loc[false_alarm, "kurtosis"],
             marker="o",
             s=150,
             facecolors="none",
             edgecolors="k",
-            label="False alarm",
+            label="False alarm (false positive)",
         )
     ax.set_xlabel("RMS (g)")
     ax.set_ylabel("Kurtosis")
@@ -114,3 +117,62 @@ def plot_metric_comparison(
     fig.tight_layout()
     fig.savefig(path, dpi=150)
     plt.close(fig)
+
+
+def plot_cost_curves(
+    curve_a,
+    curve_b,
+    path: Path,
+    label_a: str = "A: 3-sigma threshold",
+    label_b: str = "B: Mahalanobis distance",
+) -> None:
+    """画出两种方法的总代价随报警线变化的曲线（横轴已归一到报警线序号）。"""
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.plot(curve_a.index, curve_a["cost"], marker=".", label=label_a)
+    ax.plot(curve_b.index, curve_b["cost"], marker=".", label=label_b)
+    ax.set_xlabel("Alarm threshold setting (index)")
+    ax.set_ylabel("Total cost (FP + ratio x FN)")
+    ax.set_title("Cost of false alarms vs. missed faults across thresholds")
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+
+def plot_envelope_spectra(
+    spectra: dict[str, tuple],
+    char_freqs: dict[str, float],
+    path: Path,
+    freq_limit_hz: float = 400.0,
+) -> None:
+    """画几个工况的包络谱，并标出故障特征频率（BPFO/BPFI）的位置。
+
+    spectra: {工况名: (频率轴, 功率谱)}；功率谱取对数便于观察弱峰。
+    """
+    from matplotlib.lines import Line2D
+
+    colors = {"BPFO": "#eb5757", "BPFI": "#f2994a"}
+    fig, axes = plt.subplots(len(spectra), 1, figsize=(9, 2.6 * len(spectra)), sharex=True)
+    if len(spectra) == 1:
+        axes = [axes]
+    for ax, (name, (frequencies, spectrum)) in zip(axes, spectra.items(), strict=True):
+        band = frequencies <= freq_limit_hz
+        ax.semilogy(frequencies[band], spectrum[band] + 1e-30, linewidth=0.8)
+        for key, color in colors.items():
+            freq = char_freqs.get(key)
+            if freq and freq <= freq_limit_hz:
+                ax.axvline(freq, color=color, linestyle="--", alpha=0.8)
+        ax.set_ylabel("Envelope power")
+        ax.set_title(name)
+    handles = [
+        Line2D([0], [0], color=color, linestyle="--", label=f"{key} = {char_freqs[key]:.1f} Hz")
+        for key, color in colors.items()
+        if key in char_freqs
+    ]
+    axes[-1].set_xlabel("Frequency (Hz)")
+    axes[-1].legend(handles=handles)
+    fig.suptitle("Envelope spectra: fault characteristic frequencies stand out")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+

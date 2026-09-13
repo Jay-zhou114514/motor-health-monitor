@@ -35,13 +35,16 @@ class ThresholdDetector:
     def threshold_value(self) -> float:
         return self.mean_ + self.n_std * self.std_
 
-    def decision_function(self, table: pd.DataFrame) -> np.ndarray:
-        values = _finite(table, [self.column])[self.column].to_numpy()
-        return (values - self.mean_) / self.std_
+    def decision_function(self, table: pd.DataFrame) -> pd.Series:
+        valid = _finite(table, [self.column])
+        scores = (valid[self.column].to_numpy() - self.mean_) / self.std_
+        return pd.Series(scores, index=valid.index, dtype=float)
 
     def predict(self, table: pd.DataFrame) -> pd.Series:
         scores = self.decision_function(table)
-        return pd.Series(scores > self.n_std, index=table.index, dtype=bool)
+        prediction = pd.Series(False, index=table.index, dtype=bool)
+        prediction.loc[scores.index] = scores > self.n_std
+        return prediction
 
 
 class MahalanobisDetector:
@@ -76,23 +79,25 @@ class MahalanobisDetector:
         covariance = np.cov(data, rowvar=False, ddof=1)
         covariance += np.eye(covariance.shape[0]) * self.regularization
         self.inv_covariance_ = np.linalg.inv(covariance)
-        train_distances = self.decision_function(train_table)
+        train_distances = self.decision_function(train_table).to_numpy()
         self.distance_limit_ = float(np.quantile(train_distances, self.quantile))
         return self
 
-    def decision_function(self, table: pd.DataFrame) -> np.ndarray:
+    def decision_function(self, table: pd.DataFrame) -> pd.Series:
         if self.mean_ is None or self.inv_covariance_ is None:
             raise RuntimeError("请先调用 fit()")
-        data = _finite(table, self.features)[self.features].to_numpy(dtype=float)
+        valid = _finite(table, self.features)
+        data = valid[self.features].to_numpy(dtype=float)
         centered = data - self.mean_
         distances = np.sqrt(
             np.einsum("ij,jk,ik->i", centered, self.inv_covariance_, centered)
         )
-        return distances
+        return pd.Series(distances, index=valid.index, dtype=float)
 
     def predict(self, table: pd.DataFrame) -> pd.Series:
         distances = self.decision_function(table)
-        return pd.Series(
-            distances > self.distance_limit_, index=table.index, dtype=bool
-        )
+        prediction = pd.Series(False, index=table.index, dtype=bool)
+        prediction.loc[distances.index] = distances > self.distance_limit_
+        return prediction
+
 

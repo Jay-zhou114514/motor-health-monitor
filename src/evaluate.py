@@ -22,6 +22,10 @@ def evaluate(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
         if precision + recall > 0
         else 0.0
     )
+    specificity = tn / max(1.0, tn + fp)
+    fpr = fp / max(1.0, tn + fp)
+    fnr = fn / max(1.0, fn + tp)
+
     return {
         "tp": tp,
         "fp": fp,
@@ -31,4 +35,10 @@ def evaluate(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
         "precision": precision,
         "recall": recall,
         "f1": f1,
+        "specificity": specificity,
+        "fpr": fpr,
+        "fnr": fnr,
+        "false_alarm_rate": fpr,
+        "missed_detection_rate": fnr,
     }
+
