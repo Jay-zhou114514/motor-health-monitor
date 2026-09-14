@@ -76,7 +76,7 @@ class MahalanobisDetector:
             raise ValueError("训练窗口太少，无法估计协方差")
 
         self.mean_ = data.mean(axis=0)
-        covariance = np.cov(data, rowvar=False, ddof=1)
+        covariance = np.atleast_2d(np.cov(data, rowvar=False, ddof=1))
         covariance += np.eye(covariance.shape[0]) * self.regularization
         self.inv_covariance_ = np.linalg.inv(covariance)
         train_distances = self.decision_function(train_table).to_numpy()
@@ -99,5 +99,6 @@ class MahalanobisDetector:
         prediction = pd.Series(False, index=table.index, dtype=bool)
         prediction.loc[distances.index] = distances > self.distance_limit_
         return prediction
+
 
 

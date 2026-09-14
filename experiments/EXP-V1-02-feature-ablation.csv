@@ -1,0 +1,7 @@
+feature_set,n_features,threshold,accuracy,precision,recall,f1,fpr,fnr,tp,fp,fn,tn
+RMS only,1,2.0296,0.9762,0.9688,1.0,0.9841,0.0909,0.0,31,1,0,10
+RMS + Kurtosis,2,2.4122,0.9524,0.9394,1.0,0.9688,0.1818,0.0,31,2,0,9
+RMS + Crest Factor,2,2.1744,0.9524,0.9394,1.0,0.9688,0.1818,0.0,31,2,0,9
+RMS + Centroid,2,2.3757,0.8095,0.7949,1.0,0.8857,0.7273,0.0,31,8,0,3
+RMS + Kurtosis + Crest Factor,3,2.657,0.9286,0.9118,1.0,0.9538,0.2727,0.0,31,3,0,8
+All (RMS+Crest+Kurtosis+Centroid),4,2.8845,0.7857,0.775,1.0,0.8732,0.8182,0.0,31,9,0,2
