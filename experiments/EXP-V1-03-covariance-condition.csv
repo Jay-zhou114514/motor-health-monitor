@@ -1,0 +1,7 @@
+feature_set,train_condition_number,baseline_3_condition_number
+All (4 features),3802582788.2,20071014352.5
+rms + centroid_hz,3549514594.1,8504701205.7
+crest_factor + centroid_hz,424419.0,1673827.4
+crest_factor + kurtosis,476.6,248.5
+rms + kurtosis,1.8,3.1
+RMS only,1.0,1.0

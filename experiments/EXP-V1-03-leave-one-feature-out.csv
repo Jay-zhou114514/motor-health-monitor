@@ -1,0 +1,7 @@
+feature_set,n_features,threshold,precision,recall,f1,fpr,false_alarms,true_normal
+All - rms,3,2.7623,0.9394,1.0,0.9688,0.1818,2,9
+All - crest_factor,3,2.8134,0.775,1.0,0.8732,0.8182,9,2
+All - kurtosis,3,2.471,0.7949,1.0,0.8857,0.7273,8,3
+All - centroid_hz,3,2.657,0.9118,1.0,0.9538,0.2727,3,8
+All (4 features),4,2.8845,0.775,1.0,0.8732,0.8182,9,2
+RMS only,1,2.0296,0.9688,1.0,0.9841,0.0909,1,10

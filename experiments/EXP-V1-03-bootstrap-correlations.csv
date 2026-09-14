@@ -1,0 +1,5 @@
+pair,train_r,train_ci_low,train_ci_high,test_r,test_ci_low,test_ci_high,ci_overlap
+rms|kurtosis,-0.065,-0.498,0.385,0.511,0.014,0.863,True
+rms|crest_factor,0.043,-0.335,0.368,-0.569,-0.908,0.201,True
+crest_factor|centroid_hz,-0.051,-0.343,0.288,0.624,-0.147,0.915,True
+rms|centroid_hz,-0.951,-0.977,-0.882,-0.984,-0.995,-0.941,True
