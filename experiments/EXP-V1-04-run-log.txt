@@ -1,0 +1,29 @@
+EXP-V1-04 良态特征集受控对照（马氏距离，q=0.99，仅改变特征集）
+              feature_set  n_features  condition_number  threshold  threshold_cv  fp    fpr     f1  inflation_ratio
+                 RMS only           1      1.000000e+00   2.029619      0.031752   1 0.0909 0.9841            0.720
+           RMS + kurtosis           2      1.785862e+00   2.412234      0.022771   2 0.1818 0.9688            0.766
+              RMS + crest           2      8.050800e+02   2.174401      0.045886   2 0.1818 0.9688            0.741
+         crest + kurtosis           2      4.765627e+02   2.518992      0.027839   1 0.0909 0.9841            0.486
+           RMS + centroid           2      3.549515e+09   2.375701      0.042393   8 0.7273 0.8857            1.503
+         crest + centroid           2      4.244190e+05   2.390599      0.037365   1 0.0909 0.9841            0.414
+      kurtosis + centroid           2      1.975406e+08   2.719737      0.025266   1 0.0909 0.9841            0.722
+   RMS + kurtosis + crest           3      8.162106e+02   2.656977      0.031370   3 0.2727 0.9538            0.711
+RMS + kurtosis + centroid           3      3.781643e+09   2.813358      0.025634   9 0.8182 0.8732            1.346
+   RMS + crest + centroid           3      3.550420e+09   2.471039      0.053309   8 0.7273 0.8857            1.471
+         All (4 features)           4      3.802583e+09   2.884480      0.033041   9 0.8182 0.8732            1.364
+
+可检验预测：
+  log10(condition number) vs FP:          Spearman rho = 0.745, p = 0.0085
+  log10(condition number) vs threshold CV: Spearman rho = 0.264, p = 0.4334
+
+同维度对照（2 特征）：
+        feature_set  condition_number  fp    fpr     f1  threshold_cv
+     RMS + kurtosis      1.785862e+00   2 0.1818 0.9688      0.022771
+   crest + kurtosis      4.765627e+02   1 0.0909 0.9841      0.027839
+        RMS + crest      8.050800e+02   2 0.1818 0.9688      0.045886
+   crest + centroid      4.244190e+05   1 0.0909 0.9841      0.037365
+kurtosis + centroid      1.975406e+08   1 0.0909 0.9841      0.025266
+     RMS + centroid      3.549515e+09   8 0.7273 0.8857      0.042393
+
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\conditioning_control.csv
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\conditioning_control.png
