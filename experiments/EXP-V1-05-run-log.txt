@@ -1,0 +1,39 @@
+
+=== RMS + kurtosis (control) ===
+  条件数 = 1.786e+00；最小特征值方向: rms=+0.994, kurtosis=+0.111
+  最小方向占比（中位数）：训练正常 0.412 | 测试正常 0.888 | 故障 0.039
+  测试正常在最小方向上的标准化投影（中位数，绝对值）=1.610
+  收缩强度：Ledoit-Wolf δ=1.000；LOO 最优 δ=1.000
+
+=== RMS + centroid (problem) ===
+  条件数 = 3.550e+09；最小特征值方向: rms=+1.000, centroid_hz=+0.000
+  最小方向占比（中位数）：训练正常 0.495 | 测试正常 0.937 | 故障 0.837
+  测试正常在最小方向上的标准化投影（中位数，绝对值）=2.927
+  收缩强度：Ledoit-Wolf δ=0.220；LOO 最优 δ=0.000
+
+=== crest + centroid (counterexample) ===
+  条件数 = 4.244e+05；最小特征值方向: crest_factor=+1.000, centroid_hz=+0.000
+  最小方向占比（中位数）：训练正常 0.513 | 测试正常 0.305 | 故障 0.090
+  测试正常在最小方向上的标准化投影（中位数，绝对值）=0.751
+  收缩强度：Ledoit-Wolf δ=0.220；LOO 最优 δ=0.000
+
+=== 方向归因汇总 ===
+                      feature_set  condition_number  eigenvalue_min  eigenvalue_max                           min_direction  share_min_train_normal  share_min_test_normal  share_min_fault  stdproj_min_test_normal  stdproj_min_train_normal
+         RMS + kurtosis (control)      1.785862e+00        0.000088        0.000158             rms=+0.994, kurtosis=+0.111                  0.4125                 0.8879           0.0391                   1.6105                    0.7619
+         RMS + centroid (problem)      3.549515e+09        0.000009    30321.640472          rms=+1.000, centroid_hz=+0.000                  0.4949                 0.9369           0.8372                   2.9274                    0.8530
+crest + centroid (counterexample)      4.244190e+05        0.071443    30321.640577 crest_factor=+1.000, centroid_hz=+0.000                  0.5127                 0.3045           0.0896                   0.7509                    0.6792
+
+=== 正则化对比汇总 ===
+                      feature_set     estimator  delta  condition_number  threshold  fp    fpr     f1  inflation_ratio
+         RMS + kurtosis (control)     empirical 0.0000      1.785862e+00   2.481067   2 0.1818 0.9688            0.766
+         RMS + kurtosis (control)   ledoit_wolf 1.0000      1.000000e+00   2.391383   3 0.2727 0.9538            0.675
+         RMS + kurtosis (control) shrinkage_loo 1.0000      1.000000e+00   2.391383   3 0.2727 0.9538            0.675
+         RMS + centroid (problem)     empirical 0.0000      3.549514e+09   2.438263   9 0.8182 0.8732            1.576
+         RMS + centroid (problem)   ledoit_wolf 0.2201      8.084843e+00   2.513556   1 0.0909 0.9841            0.311
+         RMS + centroid (problem) shrinkage_loo 0.0000      3.549514e+09   2.438263   9 0.8182 0.8732            1.576
+crest + centroid (counterexample)     empirical 0.0000      4.244190e+05   2.446857   1 0.0909 0.9841            0.414
+crest + centroid (counterexample)   ledoit_wolf 0.2201      8.084641e+00   2.513558   1 0.0909 0.9841            0.311
+crest + centroid (counterexample) shrinkage_loo 0.0000      4.244190e+05   2.446857   1 0.0909 0.9841            0.414
+
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs
+图表目录：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures

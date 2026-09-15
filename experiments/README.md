@@ -28,6 +28,8 @@ EXP-V1-01-threshold-sensitivity.csv    原始结果表（可复算）
 | EXP-V1-02 | 特征消融与分布偏移分析 | 已完成（2026-09-14） | `src/exp_feature_ablation.py` |
 | EXP-V1-03 | 误差定位与依赖结构验证 | 已完成（2026-09-14） | `src/exp_error_localization.py` |
 | EXP-V1-04 | 良态特征集受控对照 | 已完成（2026-09-15） | `src/exp_conditioning_control.py` |
+| EXP-V1-05 | Covariance Geometry & Regularization | 已完成（2026-09-15，待审查） | `src/exp_v1_05_geometry.py` |
+
 
 
 

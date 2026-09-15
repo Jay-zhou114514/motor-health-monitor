@@ -1,0 +1,10 @@
+feature_set,estimator,delta,threshold,fp,tn,fpr,precision,recall,f1,normal_distance_median,inflation_ratio,condition_number
+RMS + kurtosis (control),empirical,0.0,2.4810670166437623,2,9,0.1818,0.9394,1.0,0.9688,1.9017,0.766,1.7858624351057195
+RMS + kurtosis (control),ledoit_wolf,1.0,2.391383125577526,3,8,0.2727,0.9118,1.0,0.9538,1.6147,0.675,1.0
+RMS + kurtosis (control),shrinkage_loo,1.0,2.391383125577526,3,8,0.2727,0.9118,1.0,0.9538,1.6147,0.675,1.0
+RMS + centroid (problem),empirical,0.0,2.4382626402768977,9,2,0.8182,0.775,1.0,0.8732,3.8417,1.576,3549514178.9390483
+RMS + centroid (problem),ledoit_wolf,0.2201,2.513555683127358,1,10,0.0909,0.9688,1.0,0.9841,0.7807,0.311,8.084843406084067
+RMS + centroid (problem),shrinkage_loo,0.0,2.4382626402768977,9,2,0.8182,0.775,1.0,0.8732,3.8417,1.576,3549514178.9390483
+crest + centroid (counterexample),empirical,0.0,2.4468568858786375,1,10,0.0909,0.9688,1.0,0.9841,1.0119,0.414,424419.0322404153
+crest + centroid (counterexample),ledoit_wolf,0.2201,2.5135576949220666,1,10,0.0909,0.9688,1.0,0.9841,0.7807,0.311,8.0846405731985
+crest + centroid (counterexample),shrinkage_loo,0.0,2.4468568858786375,1,10,0.0909,0.9688,1.0,0.9841,1.0119,0.414,424419.0322404153

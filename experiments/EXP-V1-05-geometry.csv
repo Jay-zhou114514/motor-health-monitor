@@ -1,0 +1,4 @@
+feature_set,condition_number,eigenvalue_min,eigenvalue_max,min_direction,share_min_train_normal,share_min_test_normal,share_min_fault,stdproj_min_test_normal,stdproj_min_train_normal
+RMS + kurtosis (control),1.7858624440067719,8.828870906401976e-05,0.00015767148974727316,"rms=+0.994, kurtosis=+0.111",0.4125,0.8879,0.0391,1.6105,0.7619
+RMS + centroid (problem),3549514594.4847507,8.542475221670352e-06,30321.64047164278,"rms=+1.000, centroid_hz=+0.000",0.4949,0.9369,0.8372,2.9274,0.853
+crest + centroid (counterexample),424419.03224636236,0.07144269760076777,30321.640576786915,"crest_factor=+1.000, centroid_hz=+0.000",0.5127,0.3045,0.0896,0.7509,0.6792
