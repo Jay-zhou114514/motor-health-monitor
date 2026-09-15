@@ -66,3 +66,15 @@ EXP-<阶段>-<两位序号>      例如 EXP-V1-04
 | `RESEARCH_PLAN_v1.0.md` | 初始计划（阶段 0–10），已归档 |
 | `RESEARCH_PLAN_v1.1.md` | 基于 EXP-V1-01~03 的更新版（当前有效的指导计划） |
 | `CHANGELOG.md` | V1.0 → V1.1 的逐条变更对照 |
+
+## 双线论文计划（独立仓库）
+
+会议线 / 期刊线的计划、状态、论文骨架与投稿门槛放在独立仓库，便于命名区分与完整性维护：
+
+<https://github.com/Jay-zhou114514/motor-health-monitor-papers>
+
+- `conference-track/`：会议线（最小完整闭环）
+- `journal-track/`：期刊线（机制验证、稳健性、跨数据集、真实实验）
+- `shared/`：共享决策门、同步规则、伦理与版本模板
+
+Master 仓库仍是唯一事实来源；论文仓库只引用 Master 中已冻结的实验结果。
