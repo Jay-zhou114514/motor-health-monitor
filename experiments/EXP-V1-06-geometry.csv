@@ -1,0 +1,10 @@
+fold,held_out,feature_set,n_train_windows,n_normal_windows,condition_number,lambda_min,min_direction,metric_normal_median,metric_fault_median,threshold,inflation_ratio,fp,fpr,recall,f1
+F1,baseline_3.mat,RMS + kurtosis (control),22,11,1.7858624440067719,8.828870906401976e-05,"rms=+0.994, kurtosis=+0.111",1.6105,53.6811,2.4811,0.766,2,0.1818,1.0,0.9688
+F1,baseline_3.mat,RMS + centroid (problem),22,11,3549514594.4847507,8.542475221670352e-06,"rms=+1.000, centroid_hz=+0.000",2.9274,96.2086,2.4383,1.576,9,0.8182,1.0,0.8732
+F1,baseline_3.mat,crest + centroid (counterexample),22,11,424419.03224636236,0.07144269760076777,"crest_factor=+1.000, centroid_hz=+0.000",0.7509,14.1405,2.4469,0.414,1,0.0909,1.0,0.9841
+F2,baseline_2.mat,RMS + kurtosis (control),22,11,1.7849887141256393,0.00013176332380373734,"rms=+0.898, kurtosis=-0.440",0.7232,143.3075,2.3674,0.44,0,0.0,1.0,1.0
+F2,baseline_2.mat,RMS + centroid (problem),22,11,826918532.7647908,3.631183669236997e-05,"rms=+1.000, centroid_hz=+0.000",0.7337,34.6667,2.5898,0.469,2,0.1818,1.0,0.9688
+F2,baseline_2.mat,crest + centroid (counterexample),22,11,408138.5737427341,0.07357044761176007,"crest_factor=+1.000, centroid_hz=-0.000",0.5854,29.8976,2.5926,0.459,2,0.1818,1.0,0.9688
+F3,baseline_1.mat,RMS + kurtosis (control),22,11,2.429369410258845,8.344844164011363e-05,"rms=+0.794, kurtosis=-0.609",1.8645,251.9361,2.4916,0.773,1,0.0909,1.0,0.9841
+F3,baseline_1.mat,RMS + centroid (problem),22,11,2282674918.1739244,2.154809370908615e-05,"rms=+1.000, centroid_hz=+0.000",1.8102,60.2224,2.3786,0.797,2,0.1818,1.0,0.9688
+F3,baseline_1.mat,crest + centroid (counterexample),22,11,1305969.4622551608,0.037663437057525354,"crest_factor=+1.000, centroid_hz=-0.000",1.116,36.4655,2.7604,0.463,2,0.1818,1.0,0.9688
