@@ -23,8 +23,10 @@ EXP-V1-01-threshold-sensitivity.csv    原始结果表（可复算）
 
 | 编号 | 名称 | 状态 | 脚本 |
 | --- | --- | --- | --- |
+| EXP-V1-00 | v1 基线流水线 | 已完成（待正式登记） | `src/run_pipeline.py` |
 | EXP-V1-01 | 阈值敏感性分析 | 已完成（2026-09-14） | `src/exp_threshold_sensitivity.py` |
 | EXP-V1-02 | 特征消融与分布偏移分析 | 已完成（2026-09-14） | `src/exp_feature_ablation.py` |
 | EXP-V1-03 | 误差定位与依赖结构验证 | 已完成（2026-09-14） | `src/exp_error_localization.py` |
+
 
 

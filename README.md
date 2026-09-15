@@ -108,6 +108,12 @@ motor-health-monitor/
 - 方法 B 的误报说明特征选择与阈值设定仍需改进。
 - 目前**没有真实硬件验证**，这是下一步的重点。
 
+## 研究计划与路线图
+
+- 研究计划（版本化）：`docs/plans/RESEARCH_PLAN_v1.1.md`
+- 计划变更记录：`docs/plans/CHANGELOG.md`
+- 工程路线图：`docs/ROADMAP.md`
+
 ## 下一步（详见 docs/ROADMAP.md）
 
 1. ~~用维护成本（漏报 vs 误报代价）来决定报警阈值~~ 已完成：`src/cost_analysis.py`
@@ -154,3 +160,4 @@ maintenance costs.
 Data: Rolling Element Bearing Fault Diagnosis dataset, provided by MathWorks
 (original data by Eric Bechhoefer, data-acoustics.com), licensed under
 CC BY-NC-SA 4.0. This project is for learning and non-commercial use.
+
