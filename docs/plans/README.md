@@ -30,7 +30,8 @@ EXP-<阶段>-<两位序号>      例如 EXP-V1-04
 | EXP-V1-02 | 特征消融与分布偏移分析 | 已完成（2026-09-14） |
 | EXP-V1-03 | 误差定位与依赖结构验证 | 已完成（2026-09-14） |
 | EXP-V1-04 | 良态特征集受控对照 | 已完成并审查（2026-09-15） |
-| EXP-V1-05 | Covariance Geometry & Regularization | 下一实验（已锁定） |
+| EXP-V1-05 | Covariance Geometry & Regularization | 已完成并审查（判定 B，2026-09-15） |
+| EXP-V1-06 | A 验证 H1 + B 验证 H2/δ 选择 | 下一实验 |
 
 ## 3. 计划版本规则
 
@@ -66,8 +67,9 @@ EXP-<阶段>-<两位序号>      例如 EXP-V1-04
 | --- | --- |
 | `RESEARCH_PLAN_v1.0.md` | 初始计划（阶段 0–10），已归档 |
 | RESEARCH_PLAN_v1.1.md | 基于 EXP-V1-01~03 的更新版（已被 v1.2 取代） |
-| RESEARCH_PLAN_v1.2.md | 基于 EXP-V1-04 与项目负责人最终审查（当前有效的指导计划） |
-| `CHANGELOG.md` | V1.0 → V1.1 → V1.2 的逐条变更对照 |
+| `RESEARCH_PLAN_v1.2.md` | 基于 EXP-V1-04（已被 v1.3 取代） |
+| `RESEARCH_PLAN_v1.3.md` | 基于 EXP-V1-05 与判定 B（当前有效的指导计划） |
+| `CHANGELOG.md` | V1.0 → V1.1 → V1.2 → V1.3 的逐条变更对照 |
 
 ## 双线论文计划（独立仓库）
 
@@ -80,4 +82,6 @@ EXP-<阶段>-<两位序号>      例如 EXP-V1-04
 - `shared/`：共享决策门、同步规则、伦理与版本模板
 
 Master 仓库仍是唯一事实来源；论文仓库只引用 Master 中已冻结的实验结果。
+
+
 
