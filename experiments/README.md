@@ -30,7 +30,8 @@ EXP-V1-01-threshold-sensitivity.csv    原始结果表（可复算）
 | EXP-V1-04 | 良态特征集受控对照 | 已完成（2026-09-15） | `src/exp_conditioning_control.py` |
 | EXP-V1-05 | Covariance Geometry & Regularization | 已完成并审查（判定 B，2026-09-15） | `src/exp_v1_05_geometry.py` |
 | EXP-V1-06 | 前瞻性验证（H1 复现 + δ 准则比较） | 已完成 + 证据预检通过（2026-09-16） | `src/exp_v1_06_prospective.py` |
-| EXP-V1-07 | H2 跨数据集验证（≥10 正常文件） | 计划中（预注册待写） | src/exp_v1_07_*.py（待建） |
+| EXP-V1-07 | 跨批次/跨数据集验证（H2） | 已完成（2026-09-16） | src/exp_v1_07_cross_dataset.py |
+| EXP-V1-08 | 单类检测器基线对比（3σ / 马氏 / OC-SVM / iForest） | 已完成（2026-09-17） | src/exp_v1_08_baselines.py |
 
 
 
