@@ -1,0 +1,23 @@
+query,total_results
+"TITLE-ABS-KEY(\"bearing fault diagnosis\")",9117
+"TITLE-ABS-KEY(\"Mahalanobis\" AND bearing)",221
+"TITLE-ABS-KEY(\"Mahalanobis distance\" AND \"fault diagnosis\")",248
+"TITLE-ABS-KEY(\"covariance\" AND \"shrinkage\" AND \"anomaly detection\")",6
+"TITLE-ABS-KEY(\"Ledoit-Wolf\")",72
+"TITLE-ABS-KEY(\"data leakage\" AND \"fault diagnosis\")",44
+"TITLE-ABS-KEY(\"cross-dataset\" AND bearing)",48
+"TITLE-ABS-KEY(\"domain shift\" AND bearing)",280
+"TITLE-ABS-KEY(\"condition monitoring\" AND \"false alarm\")",477
+"TITLE-ABS-KEY(\"collinearity\" AND \"anomaly detection\")",9
+"TITLE-ABS-KEY(\"Mahalanobis\" AND \"shrinkage\" AND bearing)",1
+"TITLE-ABS-KEY(\"reproducibility\" AND \"fault diagnosis\")",119
+"TITLE-ABS-KEY(\"statistical power\" AND \"machine learning\")",482
+"TITLE-ABS-KEY(\"power analysis\" AND (\"anomaly detection\" OR \"condition monitoring\"))",55
+"TITLE-ABS-KEY(\"preregistration\" AND \"machine learning\")",28
+"TITLE-ABS-KEY(\"underpowered\" AND \"machine learning\")",81
+"TITLE-ABS-KEY(\"evaluation pitfalls\" AND \"machine learning\")",6
+"TITLE-ABS-KEY(\"benchmark\" AND \"bearing fault\")",417
+"TITLE-ABS-KEY(\"file-level\" AND \"fault diagnosis\")",12
+"TITLE-ABS-KEY(\"window-level\" AND \"fault diagnosis\")",14
+"TITLE-ABS-KEY(\"leakage-safe\" OR \"leakage-aware\")",652
+"TITLE-ABS-KEY(\"negative results\" AND \"machine learning\")",1891
