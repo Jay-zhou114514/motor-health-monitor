@@ -1,0 +1,16 @@
+query_id,query,total
+BASE_bearing,"TITLE-ABS-KEY(""bearing fault diagnosis"")",9117
+BASE_mahalanobis,"TITLE-ABS-KEY(""Mahalanobis distance"" AND ""fault diagnosis"")",248
+BASE_shrinkage,"TITLE-ABS-KEY(""covariance"" AND ""shrinkage"" AND ""anomaly detection"")",6
+POWER_cms,"TITLE-ABS-KEY(""power analysis"" AND (""fault diagnosis"" OR ""condition monitoring""))",59
+POWER_ml,"TITLE-ABS-KEY((""statistical power"" OR ""sample size"") AND ""machine learning"" AND (""condition monitoring"" OR ""fault diagnosis""))",55
+POWER_under,"TITLE-ABS-KEY(""underpowered"" AND ""machine learning"")",81
+EVAL_leakage,"TITLE-ABS-KEY((""data leakage"" OR ""leakage-safe"" OR ""leakage-aware"") AND (""fault diagnosis"" OR ""bearing""))",56
+EVAL_pitfall,"TITLE-ABS-KEY((""evaluation"" AND (""pitfall"" OR ""validity"")) AND (""machine learning"" OR ""fault diagnosis""))",2269
+EVAL_repro,"TITLE-ABS-KEY(""reproducibility"" AND (""fault diagnosis"" OR ""condition monitoring""))",242
+LEVEL_window_file,"TITLE-ABS-KEY((""window-level"" OR ""file-level"" OR ""record-level"" OR ""segment-level"") AND (""fault diagnosis"" OR ""anomaly detection""))",141
+GENERAL_cross,"TITLE-ABS-KEY((""cross-dataset"" OR ""cross-machine"" OR ""cross-rig"") AND (""fault diagnosis"" OR ""condition monitoring""))",210
+GENERAL_domain,"TITLE-ABS-KEY(""domain shift"" AND (""fault diagnosis"" OR ""bearing""))",560
+BASELINE_oneclass,"TITLE-ABS-KEY((""one-class SVM"" OR ""novelty detection"" OR ""Isolation Forest"") AND (""bearing"" OR ""fault diagnosis"" OR ""condition monitoring""))",457
+NEG_prereg,"TITLE-ABS-KEY(""preregistration"" AND (""machine learning"" OR ""anomaly detection""))",29
+NEG_negative,"TITLE-ABS-KEY(""negative results"" AND (""machine learning"" OR ""fault diagnosis""))",1898

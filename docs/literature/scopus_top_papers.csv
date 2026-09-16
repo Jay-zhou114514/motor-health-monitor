@@ -1,0 +1,76 @@
+query_id,year,citations,title,venue,doi
+BASE_bearing,2018,1491,A deep convolutional neural network with new training methods for bearing fault diagnosis under noisy environment and different working load,Mechanical Systems and Signal Processing,10.1016/j.ymssp.2017.06.022
+BASE_bearing,2017,898,Multisensor feature fusion for bearing fault diagnosis using sparse autoencoder and deep belief network,IEEE Transactions on Instrumentation and Measurement,10.1109/TIM.2017.2669947
+BASE_bearing,2019,870,A survey on Deep Learning based bearing fault diagnosis,Neurocomputing,10.1016/j.neucom.2018.06.078
+BASE_bearing,2016,818,Hierarchical adaptive deep convolution neural network and its application to bearing fault diagnosis,Measurement Journal of the International Measurement Confederation,10.1016/j.measurement.2016.07.054
+BASE_bearing,2015,812,Application of empirical mode decomposition and artificial neural network for automatic bearing fault diagnosis based on vibration signals,Applied Acoustics,10.1016/j.apacoust.2014.08.016
+BASE_mahalanobis,2006,249,A fault diagnosis approach for roller bearings based on EMD method and AR model,Mechanical Systems and Signal Processing,10.1016/j.ymssp.2004.11.002
+BASE_mahalanobis,2021,234,Infrared Thermography-Based Fault Diagnosis of Induction Motor Bearings Using Machine Learning,IEEE Sensors Journal,10.1109/JSEN.2020.3015868
+BASE_mahalanobis,2020,181,Support vector machines based non-contact fault diagnosis system for bearings,Journal of Intelligent Manufacturing,10.1007/s10845-019-01511-x
+BASE_mahalanobis,2012,169,Intelligent fault diagnosis of rotating machinery using infrared thermal image,Expert Systems with Applications,10.1016/j.eswa.2011.08.004
+BASE_mahalanobis,2011,162,Virtual prototype and experimental research on gear multi-fault diagnosis using wavelet-autoregressive model and principal component analysis method,Mechanical Systems and Signal Processing,10.1016/j.ymssp.2011.02.017
+BASE_shrinkage,2011,42,Sparse matrix transform for hyperspectral image processing,IEEE Journal on Selected Topics in Signal Processing,10.1109/JSTSP.2010.2103924
+BASE_shrinkage,2014,8,Regularized block Toeplitz covariance matrix estimation via Kronecker product expansions,IEEE Workshop on Statistical Signal Processing Proceedings,10.1109/SSP.2014.6884562
+BASE_shrinkage,2024,0,A likelihood ratio test for shrinkage covariance estimators,Proceedings of SPIE the International Society for Optical Engineering,10.1117/12.3013476
+BASE_shrinkage,2026,0,Starlink Orbit Anomaly Detection with Wavelet-Kalman Filtering and Compensated Propagation,Aerospace,10.3390/aerospace13080740
+BASE_shrinkage,2026,0,An unsupervised approach to anomaly detection in near-infrared spectroscopy via Covariance-Shrunk Slow Feature Analysis,Chemometrics and Intelligent Laboratory Systems,10.1016/j.chemolab.2025.105615
+POWER_cms,2009,182,Condition monitoring and fault diagnosis of a wind turbine synchronous generator drive train,Iet Renewable Power Generation,10.1049/iet-rpg:20080006
+POWER_cms,2015,33,An on-line condition monitoring system for induction motors via instantaneous power analysis,Journal of Mechanical Science and Technology,10.1007/s12206-015-0321-9
+POWER_cms,2008,33,Silicon-level solutions to counteract passive and active attacks,Fault Diagnosis and Tolerance in Cryptography Proceedings of the 5th International Workshop Fdtc 2008,10.1109/FDTC.2008.18
+POWER_cms,2017,31,Condition monitoring of induction motors via instantaneous power analysis,Journal of Intelligent Manufacturing,10.1007/s10845-015-1048-2
+POWER_cms,2015,29,Determination of minimum sample size for fault diagnosis of automobile hydraulic brake system using power analysis,Engineering Science and Technology an International Journal,10.1016/j.jestch.2014.09.007
+POWER_ml,2018,404,An intelligent diagnosis scheme based on generative adversarial learning deep neural networks and its application to planetary gearbox fault pattern recognition,Neurocomputing,10.1016/j.neucom.2018.05.024
+POWER_ml,2020,135,Rolling Bearing Fault Diagnosis Using Time-Frequency Analysis and Deep Transfer Convolutional Neural Network,IEEE Access,10.1109/ACCESS.2020.3016888
+POWER_ml,2019,115,A generative adversarial network-based intelligent fault diagnosis method for rotating machinery under small sample size conditions,IEEE Access,10.1109/ACCESS.2019.2947194
+POWER_ml,2015,64,Steel plates fault diagnosis on the basis of support vector machines,Neurocomputing,10.1016/j.neucom.2014.09.036
+POWER_ml,2023,40,Filter-wrapper combined feature selection and adaboost-weighted broad learning system for transformer fault diagnosis under imbalanced samples,Neurocomputing,10.1016/j.neucom.2023.126803
+POWER_under,2023,1610,Accurate proteome-wide missense variant effect prediction with AlphaMissense,Science,10.1126/science.adg7492
+POWER_under,2018,143,A systematic review of structural MRI biomarkers in autism spectrum disorder: A machine learning perspective,International Journal of Developmental Neuroscience,10.1016/j.ijdevneu.2018.08.010
+POWER_under,2022,125,What we learn about bipolar disorder from large-scale neuroimaging: Findings and future directions from the ENIGMA Bipolar Disorder Working Group,Human Brain Mapping,10.1002/hbm.25098
+POWER_under,2018,92,A Deep Look Into the Future of Quantitative Imaging in Oncology: A Statement of Working Principles and Proposal for Change,International Journal of Radiation Oncology Biology Physics,10.1016/j.ijrobp.2018.08.032
+POWER_under,2021,57,A comparison of methods for interpreting random forest models of genetic association in the presence of non-additive interactions,Biodata Mining,10.1186/s13040-021-00243-0
+EVAL_leakage,2022,108,Adaptive Privacy-Preserving Federated Learning for Fault Diagnosis in Internet of Ships,IEEE Internet of Things Journal,10.1109/JIOT.2021.3115817
+EVAL_leakage,2023,65,A federated transfer learning method with low-quality knowledge filtering and dynamic model aggregation for rolling bearing fault diagnosis,Mechanical Systems and Signal Processing,10.1016/j.ymssp.2023.110413
+EVAL_leakage,2024,56,Event-Triggered Federated Learning for Fault Diagnosis of Offshore Wind Turbines with Decentralized Data,IEEE Transactions on Automation Science and Engineering,10.1109/TASE.2023.3270354
+EVAL_leakage,2023,43,Abnormal Data Detection Based on Adaptive Sliding Window and Weighted Multiscale Local Outlier Factor for Machinery Health Monitoring,IEEE Transactions on Industrial Electronics,10.1109/TIE.2022.3231279
+EVAL_leakage,2024,34,Fusing consensus knowledge: A federated learning method for fault diagnosis via privacy-preserving reference under domain shift,Information Fusion,10.1016/j.inffus.2024.102290
+EVAL_pitfall,2006,19135,An introduction to ROC analysis,Pattern Recognition Letters,10.1016/j.patrec.2005.10.010
+EVAL_pitfall,2015,2763,The evaluation of tumor-infiltrating lymphocytes (TILS) in breast cancer: Recommendations by an International TILS Working Group 2014,Annals of Oncology,10.1093/annonc/mdu450
+EVAL_pitfall,2020,1333,Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks,37th International Conference on Machine Learning Icml 2020,
+EVAL_pitfall,2018,664,Deep-learning-assisted diagnosis for knee magnetic resonance imaging: Development and retrospective validation of MRNet,Plos Medicine,10.1371/journal.pmed.1002699
+EVAL_pitfall,2023,623,Machine Learning in Environmental Research: Common Pitfalls and Best Practices,Environmental Science and Technology,10.1021/acs.est.3c00026
+EVAL_repro,2021,615,Applications of Unsupervised Deep Transfer Learning to Intelligent Fault Diagnosis: A Survey and Comparative Study,IEEE Transactions on Instrumentation and Measurement,10.1109/TIM.2021.3116309
+EVAL_repro,2001,533,Reconstruction-based fault identification using a combined index,Industrial and Engineering Chemistry Research,10.1021/ie000141+
+EVAL_repro,2020,233,A novel bearing intelligent fault diagnosis framework under time-varying working conditions using recurrent neural network,ISA Transactions,10.1016/j.isatra.2019.11.010
+EVAL_repro,2018,229,Evaluation of low-cost sensors for ambient PM2.5 monitoring,Journal of Sensors,10.1155/2018/5096540
+EVAL_repro,2014,171,Novel neural networks-based fault tolerant control scheme with fault alarm,IEEE Transactions on Cybernetics,10.1109/TCYB.2014.2303131
+LEVEL_window_file,2023,204,Dual Memory Units with Uncertainty Regulation forWeakly Supervised Video Anomaly Detection,Proceedings of the 37th Aaai Conference on Artificial Intelligence Aaai 2023,10.1609/aaai.v37i3.25489
+LEVEL_window_file,2024,172,TimesURL: Self-Supervised Contrastive Learning for Universal Time Series Representation Learning,Proceedings of the Aaai Conference on Artificial Intelligence,10.1609/aaai.v38i12.29299
+LEVEL_window_file,2022,140,Unsupervised Time-Series Representation Learning with Iterative Bilinear Temporal-Spectral Fusion,Proceedings of Machine Learning Research,
+LEVEL_window_file,2025,48,An X-Ray-Based Multiexpert Inspection Method for Automatic Welding Defect Assessment in Intelligent Pipeline Systems,IEEE ASME Transactions on Mechatronics,10.1109/TMECH.2024.3408337
+LEVEL_window_file,2024,47,Time-segment-wise feature fusion transformer for multi-modal fault diagnosis,Engineering Applications of Artificial Intelligence,10.1016/j.engappai.2024.109358
+GENERAL_cross,2023,405,Deep discriminative transfer learning network for cross-machine fault diagnosis,Mechanical Systems and Signal Processing,10.1016/j.ymssp.2022.109884
+GENERAL_cross,2025,171,LLM-based framework for bearing fault diagnosis,Mechanical Systems and Signal Processing,10.1016/j.ymssp.2024.112127
+GENERAL_cross,2024,168,Deep transfer learning strategy in intelligent fault diagnosis of rotating machinery,Engineering Applications of Artificial Intelligence,10.1016/j.engappai.2024.108678
+GENERAL_cross,2020,134,Intelligent cross-machine fault diagnosis approach with deep auto-encoder and domain adaptation,Neurocomputing,10.1016/j.neucom.2019.12.033
+GENERAL_cross,2024,130,Causal Disentanglement Domain Generalization for time-series signal fault diagnosis,Neural Networks,10.1016/j.neunet.2024.106099
+GENERAL_domain,2021,615,Applications of Unsupervised Deep Transfer Learning to Intelligent Fault Diagnosis: A Survey and Comparative Study,IEEE Transactions on Instrumentation and Measurement,10.1109/TIM.2021.3116309
+GENERAL_domain,2024,544,Domain generalization for cross-domain fault diagnosis: An application-oriented perspective and a benchmark study,Reliability Engineering and System Safety,10.1016/j.ress.2024.109964
+GENERAL_domain,2019,496,Multi-Layer domain adaptation method for rolling bearing fault diagnosis,Signal Processing,10.1016/j.sigpro.2018.12.005
+GENERAL_domain,2019,399,Cross-domain fault diagnosis of rolling element bearings using deep generative neural networks,IEEE Transactions on Industrial Electronics,10.1109/TIE.2018.2868023
+GENERAL_domain,2020,310,Domain Adversarial Transfer Network for Cross-Domain Fault Diagnosis of Rotary Machinery,IEEE Transactions on Instrumentation and Measurement,10.1109/TIM.2020.2995441
+BASELINE_oneclass,2022,339,An explainable artificial intelligence approach for unsupervised fault detection and diagnosis in rotating machinery,Mechanical Systems and Signal Processing,10.1016/j.ymssp.2021.108105
+BASELINE_oneclass,2022,245,Vibration-based anomaly detection using LSTM/SVM approaches,Mechanical Systems and Signal Processing,10.1016/j.ymssp.2021.108752
+BASELINE_oneclass,2019,242,Unsupervised electric motor fault detection by using deep autoencoders,IEEE Caa Journal of Automatica Sinica,10.1109/JAS.2019.1911393
+BASELINE_oneclass,2013,200,Automatic bearing fault diagnosis based on one-class m-SVM,Computers and Industrial Engineering,10.1016/j.cie.2012.10.013
+BASELINE_oneclass,2021,190,A deep learning model for process fault prognosis,Process Safety and Environmental Protection,10.1016/j.psep.2021.08.022
+NEG_prereg,2022,476,Small Effects: The Indispensable Foundation for a Cumulative Psychological Science,Perspectives on Psychological Science,10.1177/1745691620984483
+NEG_prereg,2017,52,Neuroadaptive Bayesian Optimization and Hypothesis Testing,Trends in Cognitive Sciences,10.1016/j.tics.2017.01.006
+NEG_prereg,2025,42,Benefits and harms associated with the use of AI-related algorithmic decision-making systems by healthcare professionals: a systematic review,Lancet Regional Health Europe,10.1016/j.lanepe.2024.101145
+NEG_prereg,2025,36,External validation of machine learning models—registered models and adaptive sample splitting,Gigascience,10.1093/gigascience/giaf036
+NEG_prereg,2023,34,Developmental data science: How machine learning can advance theory formation in Developmental Psychology,Infant and Child Development,10.1002/icd.2370
+NEG_negative,2020,5373,The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation,BMC Genomics,10.1186/s12864-019-6413-7
+NEG_negative,2019,1915,End-to-end lung cancer screening with three-dimensional deep learning on low-dose chest computed tomography,Nature Medicine,10.1038/s41591-019-0447-x
+NEG_negative,2014,860,Hierarchical feature representation and multimodal fusion with deep learning for AD/MCI diagnosis,Neuroimage,10.1016/j.neuroimage.2014.06.077
+NEG_negative,2019,618,Magnetic resonance imaging-based brain tumor grades classification and grading via convolutional neural networks and genetic algorithms,Biocybernetics and Biomedical Engineering,10.1016/j.bbe.2018.10.004
+NEG_negative,2020,607,Artificial intelligence in cancer diagnosis and prognosis: Opportunities and challenges,Cancer Letters,10.1016/j.canlet.2019.12.007

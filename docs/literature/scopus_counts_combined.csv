@@ -1,0 +1,31 @@
+round,query,total
+1,TITLE-ABS-KEY("bearing fault diagnosis"),9117
+1,TITLE-ABS-KEY("Mahalanobis" AND bearing),221
+1,TITLE-ABS-KEY("Mahalanobis distance" AND "fault diagnosis"),248
+1,TITLE-ABS-KEY("covariance" AND "shrinkage" AND "anomaly detection"),6
+1,TITLE-ABS-KEY("Ledoit-Wolf"),72
+1,TITLE-ABS-KEY("data leakage" AND "fault diagnosis"),44
+1,TITLE-ABS-KEY("cross-dataset" AND bearing),48
+1,TITLE-ABS-KEY("domain shift" AND bearing),280
+1,TITLE-ABS-KEY("condition monitoring" AND "false alarm"),477
+1,TITLE-ABS-KEY("collinearity" AND "anomaly detection"),9
+1,TITLE-ABS-KEY("Mahalanobis" AND "shrinkage" AND bearing),1
+1,TITLE-ABS-KEY("reproducibility" AND "fault diagnosis"),119
+1,TITLE-ABS-KEY("statistical power" AND "machine learning"),482
+1,TITLE-ABS-KEY("power analysis" AND ("anomaly detection" OR "condition monitoring")),55
+1,TITLE-ABS-KEY("preregistration" AND "machine learning"),28
+1,TITLE-ABS-KEY("underpowered" AND "machine learning"),81
+1,TITLE-ABS-KEY("evaluation pitfalls" AND "machine learning"),6
+1,TITLE-ABS-KEY("benchmark" AND "bearing fault"),417
+1,TITLE-ABS-KEY("file-level" AND "fault diagnosis"),12
+1,TITLE-ABS-KEY("window-level" AND "fault diagnosis"),14
+1,TITLE-ABS-KEY("leakage-safe" OR "leakage-aware"),652
+1,TITLE-ABS-KEY("negative results" AND "machine learning"),1891
+2,TITLE-ABS-KEY("data leakage") AND TITLE-ABS-KEY("machine learning") NOT (privacy OR federated OR "side channel"),992
+2,TITLE-ABS-KEY("statistical power") AND TITLE-ABS-KEY("evaluation") AND TITLE-ABS-KEY("machine learning"),69
+2,TITLE-ABS-KEY("power analysis") AND TITLE-ABS-KEY("fault diagnosis"),43
+2,TITLE-ABS-KEY("train-test split" OR "train test split") AND TITLE-ABS-KEY("fault diagnosis" OR "condition monitoring"),25
+2,TITLE-ABS-KEY("bearing-wise" OR "file-wise" OR "recording-level" OR "segment-wise") AND TITLE-ABS-KEY("fault diagnosis" OR bearing),13
+2,TITLE-ABS-KEY("realistic evaluation") AND TITLE-ABS-KEY(bearing OR "fault diagnosis"),33
+2,TITLE-ABS-KEY(benchmark) AND TITLE-ABS-KEY("bearing fault diagnosis"),291
+2,TITLE-ABS-KEY("failed replication" OR "negative results") AND TITLE-ABS-KEY("machine learning" OR "anomaly detection") NOT psycholog*,1894
