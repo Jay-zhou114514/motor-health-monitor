@@ -1,6 +1,23 @@
 # 项目交接与继续指南
 
-最后更新：2026-09-17（EXP-V1-09 完成）
+最后更新：2026-09-17（V1.6 发布）
+
+## 2026-09-17：文献审计 + 发布 V1.6（三层可靠性框架）
+
+- 针对性文献审计（Scopus）：stability selection 463 / nested CV 2,064 / HPO variance 369 /
+  model-selection uncertainty 599 → **"选择不确定性"概念非原创**；
+  但 small-sample + one-class + eval/hyperparam（24）与 evaluation protocol + FD/CM（27）
+  中**无一篇属于本领域的选择不确定性研究**。
+  → 贡献定位：**成熟方法学的领域应用 + 量化案例 + 报告规范**。
+- 发布 `docs/plans/RESEARCH_PLAN_v1.6.md`：
+  - 统一研究问题："小样本、仅健康数据的轴承异常检测实验，结论有多可靠？"
+  - 三层框架：数据/划分（V1-05→07）、模型选择（V1-08→09）、结果报告（新增）；
+  - 五维评价：Performance / Selection stability / Selection cost / Selection sensitivity / Generalization；
+  - 原则：**不再增加模型**。
+- 措辞修正（按审查意见）：OC-SVM 限定在小样本 normal-only RBF 设定与预定义协议；
+  报告措辞改为"只报告选择后单一性能，可能掩盖选择过程的不确定性"。
+- 新增 `experiments/EXP-V1-10-preregistration.md`：固定测试集 + 50 次训练/验证重采样，
+  量化选择稳定性与测试表现波动（含 7.1% 分辨率限制的预先声明）。
 
 ## 2026-09-17：EXP-V1-09 训练内超参协议
 
@@ -234,6 +251,7 @@ git push
 ## 红鸟挑战营准备原则
 
 材料与面试不能只展示技术。要保留“真实需求—问题定义—多个方案—原型—测试—风险与改进”的证据，并持续练习团队协作、表达、系统思维与英文项目介绍。
+
 
 
 

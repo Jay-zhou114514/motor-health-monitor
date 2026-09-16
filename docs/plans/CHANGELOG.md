@@ -1,5 +1,19 @@
 # 研究计划变更记录
 
+## v1.5 → v1.6（2026-09-17）
+
+依据：EXP-V1-09 + 针对性文献审计（selection uncertainty / hyperparameter instability）。
+
+| 处理 | 内容 |
+| --- | --- |
+| 新增 | **统一研究问题**："小样本、仅健康数据的轴承异常检测实验，结论有多可靠？" |
+| 新增 | **三层可靠性框架**：数据/划分（V1-05→07）、模型选择（V1-08→09）、结果报告（新） |
+| 新增 | **五维评价框架**：Performance / Selection stability / Selection cost / Selection sensitivity / Generalization |
+| 因审计而修改 | 明确"选择不确定性"**概念非原创**（stability selection 463、nested CV 2,064 等）；贡献定位为应用 + 案例 + 报告规范 |
+| 因审查而修改 | OC-SVM 措辞限定为"在本研究设定与协议下调参未消除不稳定性"；报告措辞改为"只报告选择后单一性能可能掩盖选择过程不确定性" |
+| 新增 | EXP-V1-10 预注册：选择过程不确定性量化（固定测试集 + 50 次重采样） |
+| 保留 | 不再增加模型（保持 3σ RMS / OC-SVM / iForest 三个代表） |
+
 ## v1.4 → v1.5（2026-09-17）
 
 依据：EXP-V1-08 + EXP-V1-07 + Vieira 2026 / Knap 2026 全文精读。
@@ -108,6 +122,7 @@
 | V1-05 Shrinkage Covariance | EXP-V1-05 | 条件触发 |
 | V1-06 Threshold Sensitivity | EXP-V1-06 | 扩展阈值敏感性（EXP-V1-01 的扩展版） |
 | V1-07 Feature Robustness | EXP-V1-07 | 跨文件稳定性 |
+
 
 
 
