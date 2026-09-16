@@ -1,0 +1,37 @@
+
+=== IMS 1st_test（12 个文件；外层 12 折）===
+
+=== IMS 2nd_test（6 个文件；外层 6 折）===
+
+=== IMS 4th_test（6 个文件；外层 6 折）===
+
+EXP-V1-09 批次均值误报率（内层选参，测试不参与）
+       batch                      method  mean_fp_rate  median_fp_rate  max_fp_rate  modal_hyper  modal_share  seconds_per_fold
+IMS 1st_test              A: 3-sigma RMS        0.0238          0.0000       0.1429            -        1.000            0.0001
+IMS 1st_test              B: Mahalanobis        0.0476          0.0000       0.1429            -        1.000            0.0003
+IMS 1st_test    C: One-Class SVM (tuned)        0.1310          0.1429       0.4286   (0.1, 0.1)        0.833            0.9322
+IMS 1st_test D: Isolation Forest (tuned)        0.0119          0.0000       0.1429   (200, 0.8)        0.333           13.9650
+IMS 2nd_test              A: 3-sigma RMS        0.0238          0.0000       0.1429            -        1.000            0.0001
+IMS 2nd_test              B: Mahalanobis        0.1190          0.0714       0.2857            -        1.000            0.0003
+IMS 2nd_test    C: One-Class SVM (tuned)        0.3571          0.2857       0.7143 (0.001, 0.1)        1.000            0.2524
+IMS 2nd_test D: Isolation Forest (tuned)        0.0476          0.0000       0.2857   (200, 0.5)        1.000            6.4557
+IMS 4th_test              A: 3-sigma RMS        0.0238          0.0000       0.1429            -        1.000            0.0001
+IMS 4th_test              B: Mahalanobis        0.1667          0.0000       0.5714            -        1.000            0.0002
+IMS 4th_test    C: One-Class SVM (tuned)        0.2619          0.1429       0.8571 (0.001, 0.1)        1.000            0.2643
+IMS 4th_test D: Isolation Forest (tuned)        0.0238          0.0000       0.1429   (100, 0.5)        0.500            6.4085
+
+=== 预注册判据 ===
+判定阈值（预先设定，非方法应有水平）：FP rate ≤ 5%
+
+C: One-Class SVM (tuned): 达标批次 0/3；批次均值 = [0.131, 0.3571, 0.2619]
+D: Isolation Forest (tuned): 达标批次 3/3；批次均值 = [0.0119, 0.0476, 0.0238]
+
+P1/P2/P3：现代方法达标批次数 = 3 → 支持（3 批次全达标）
+
+P4（次要）：折间选参不稳定（模态占比 < 50%）的组合数 = 1 → 成立
+       batch                      method  modal_share
+IMS 1st_test D: Isolation Forest (tuned)        0.333
+
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_09_folds.csv
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_09_summary.csv
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_09_hyperparams.png

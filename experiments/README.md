@@ -32,6 +32,7 @@ EXP-V1-01-threshold-sensitivity.csv    原始结果表（可复算）
 | EXP-V1-06 | 前瞻性验证（H1 复现 + δ 准则比较） | 已完成 + 证据预检通过（2026-09-16） | `src/exp_v1_06_prospective.py` |
 | EXP-V1-07 | 跨批次/跨数据集验证（H2） | 已完成（2026-09-16） | src/exp_v1_07_cross_dataset.py |
 | EXP-V1-08 | 单类检测器基线对比（3σ / 马氏 / OC-SVM / iForest） | 已完成（2026-09-17） | src/exp_v1_08_baselines.py |
+| EXP-V1-09 | 训练内超参协议（嵌套 leave-one-file-out） | 已完成（2026-09-17） | src/exp_v1_09_hyperparams.py |
 
 
 

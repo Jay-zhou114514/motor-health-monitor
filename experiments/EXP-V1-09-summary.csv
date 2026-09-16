@@ -1,0 +1,13 @@
+batch,method,mean_fp_rate,median_fp_rate,max_fp_rate,modal_hyper,modal_share,seconds_per_fold
+IMS 1st_test,A: 3-sigma RMS,0.0238,0.0,0.1429,-,1.0,0.0001
+IMS 1st_test,B: Mahalanobis,0.0476,0.0,0.1429,-,1.0,0.0003
+IMS 1st_test,C: One-Class SVM (tuned),0.131,0.1429,0.4286,"(0.1, 0.1)",0.833,0.9322
+IMS 1st_test,D: Isolation Forest (tuned),0.0119,0.0,0.1429,"(200, 0.8)",0.333,13.965
+IMS 2nd_test,A: 3-sigma RMS,0.0238,0.0,0.1429,-,1.0,0.0001
+IMS 2nd_test,B: Mahalanobis,0.119,0.0714,0.2857,-,1.0,0.0003
+IMS 2nd_test,C: One-Class SVM (tuned),0.3571,0.2857,0.7143,"(0.001, 0.1)",1.0,0.2524
+IMS 2nd_test,D: Isolation Forest (tuned),0.0476,0.0,0.2857,"(200, 0.5)",1.0,6.4557
+IMS 4th_test,A: 3-sigma RMS,0.0238,0.0,0.1429,-,1.0,0.0001
+IMS 4th_test,B: Mahalanobis,0.1667,0.0,0.5714,-,1.0,0.0002
+IMS 4th_test,C: One-Class SVM (tuned),0.2619,0.1429,0.8571,"(0.001, 0.1)",1.0,0.2643
+IMS 4th_test,D: Isolation Forest (tuned),0.0238,0.0,0.1429,"(100, 0.5)",0.5,6.4085
