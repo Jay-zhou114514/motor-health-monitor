@@ -212,27 +212,27 @@ ADVISORY: 方法学议题较新；经典统计学文献（样本量/功效）需
 4. 依据本综述把主线正式定为"功效感知 + 单元独立 + 多层级评价"。
 
 ## 11. 参考文献（APA 7，元数据经 Crossref / arXiv 核验）
-+
-+1. Kapoor, S., & Narayanan, A. (2023). Leakage and the reproducibility crisis in machine-learning-based science. *Patterns, 4*(9), 100804. https://doi.org/10.1016/j.patter.2023.100804
-+2. Vieira, J. P., Bauler, V. A., Rosa, R. K., & Silva, D. (2026). Towards a more realistic evaluation of machine learning models for bearing fault diagnosis. *Mechanical Systems and Signal Processing, 258*, 114640. https://doi.org/10.1016/j.ymssp.2026.114640
-+3. Rajput, D., Wang, W., & Chen, C. (2023). Evaluation of a decided sample size in machine learning applications. *BMC Bioinformatics, 24*, 48. https://doi.org/10.1186/s12859-023-05156-9
-+4. Knap, P., Jachymczyk, U., & Lalik, K. (2026). Leakage-safe, reproducible benchmarking for vibration-based fault diagnosis. *PHM Society European Conference, 9*(1), 1-8. https://doi.org/10.36001/phme.2026.v9i1.4924
-+5. Qian, Q., Qin, Y., Luo, J., Wang, Y., & Wu, F. (2023). Deep discriminative transfer learning network for cross-machine fault diagnosis. *Mechanical Systems and Signal Processing, 186*, 109884. https://doi.org/10.1016/j.ymssp.2022.109884
-+
-+### 11.1 arXiv 盲区检索新增（Scopus 未覆盖）
-+
-+6. Phan-Trong, D., Gupta, S., & Venkatesh, S. (2026). *A statistical approach to estimating sample size of machine learning models* [Preprint]. arXiv:2609.09547. https://arxiv.org/abs/2609.09547
-+   - 与我们的"功效/样本量"论点**直接相关**：提供机器学习样本量估计的统计方法。必读。
-+7. Apicella, A., Isgro, F., & Prevete, R. (2024). *Don't push the button! Exploring data leakage risks in machine learning and transfer learning* [Preprint]. arXiv:2401.13796. https://arxiv.org/abs/2401.13796
-+8. AlOmar, E. A., DeMario, C., Shagawat, R., & Kreiser, B. (2025). *LeakageDetector: An open source data leakage analysis tool in machine learning pipelines* [Preprint]. arXiv:2503.14723. https://arxiv.org/abs/2503.14723
-+9. Truong, O., Zhang, T., Marchareddy, A., Lee, R., Busold, J., Socas, M., & AlOmar, E. A. (2025). *LeakageDetector 2.0: Analyzing data leakage in Jupyter-driven machine learning pipelines* [Preprint]. arXiv:2509.15971. https://arxiv.org/abs/2509.15971
-+10. Hossain, M., Kibria, N., & Shahriar, F. (2026). *Evaluating reliability in machine learning models for early chronic kidney disease prediction: A systematic review of data leakage and predictor stability* [Preprint]. arXiv:2607.11963. https://arxiv.org/abs/2607.11963
-+   - 可作为"针对某一应用领域做数据泄漏系统综述"的**写作模板**。
-+
-+### 11.2 盲区检索的结论
-+
-+- arXiv 层面：`"data leakage" ∧ "machine learning"` 393 篇、`"statistical power" ∧ "machine learning"` 258 篇，
-+  其中包含**泄漏检测工具**（LeakageDetector 1.0/2.0）与**样本量估计方法**（2609.09547）——
-+  这些在 Scopus 的 TITLE-ABS-KEY 检索中未出现在前列。
-+- `"condition monitoring" ∧ "deep learning"` 仅 47 篇：说明状态监测的方法类工作在 arXiv 上很少，
-+  该领域的文献主体仍在期刊（MSSP / IEEE TIE / Measurement），但也意味着**方法学类工作在该领域更稀缺**。
+
+1. Kapoor, S., & Narayanan, A. (2023). Leakage and the reproducibility crisis in machine-learning-based science. *Patterns, 4*(9), 100804. https://doi.org/10.1016/j.patter.2023.100804
+2. Vieira, J. P., Bauler, V. A., Rosa, R. K., & Silva, D. (2026). Towards a more realistic evaluation of machine learning models for bearing fault diagnosis. *Mechanical Systems and Signal Processing, 258*, 114640. https://doi.org/10.1016/j.ymssp.2026.114640
+3. Rajput, D., Wang, W., & Chen, C. (2023). Evaluation of a decided sample size in machine learning applications. *BMC Bioinformatics, 24*, 48. https://doi.org/10.1186/s12859-023-05156-9
+4. Knap, P., Jachymczyk, U., & Lalik, K. (2026). Leakage-safe, reproducible benchmarking for vibration-based fault diagnosis. *PHM Society European Conference, 9*(1), 1-8. https://doi.org/10.36001/phme.2026.v9i1.4924
+5. Qian, Q., Qin, Y., Luo, J., Wang, Y., & Wu, F. (2023). Deep discriminative transfer learning network for cross-machine fault diagnosis. *Mechanical Systems and Signal Processing, 186*, 109884. https://doi.org/10.1016/j.ymssp.2022.109884
+
+### 11.1 arXiv 盲区检索新增（Scopus 未覆盖）
+
+6. Phan-Trong, D., Gupta, S., & Venkatesh, S. (2026). *A statistical approach to estimating sample size of machine learning models* [Preprint]. arXiv:2609.09547. https://arxiv.org/abs/2609.09547
+   - 与我们的"功效/样本量"论点**直接相关**：提供机器学习样本量估计的统计方法。必读。
+7. Apicella, A., Isgro, F., & Prevete, R. (2024). *Don't push the button! Exploring data leakage risks in machine learning and transfer learning* [Preprint]. arXiv:2401.13796. https://arxiv.org/abs/2401.13796
+8. AlOmar, E. A., DeMario, C., Shagawat, R., & Kreiser, B. (2025). *LeakageDetector: An open source data leakage analysis tool in machine learning pipelines* [Preprint]. arXiv:2503.14723. https://arxiv.org/abs/2503.14723
+9. Truong, O., Zhang, T., Marchareddy, A., Lee, R., Busold, J., Socas, M., & AlOmar, E. A. (2025). *LeakageDetector 2.0: Analyzing data leakage in Jupyter-driven machine learning pipelines* [Preprint]. arXiv:2509.15971. https://arxiv.org/abs/2509.15971
+10. Hossain, M., Kibria, N., & Shahriar, F. (2026). *Evaluating reliability in machine learning models for early chronic kidney disease prediction: A systematic review of data leakage and predictor stability* [Preprint]. arXiv:2607.11963. https://arxiv.org/abs/2607.11963
+   - 可作为"针对某一应用领域做数据泄漏系统综述"的**写作模板**。
+
+### 11.2 盲区检索的结论
+
+- arXiv 层面：`"data leakage" ∧ "machine learning"` 393 篇、`"statistical power" ∧ "machine learning"` 258 篇，
+  其中包含**泄漏检测工具**（LeakageDetector 1.0/2.0）与**样本量估计方法**（2609.09547）——
+  这些在 Scopus 的 TITLE-ABS-KEY 检索中未出现在前列。
+- `"condition monitoring" ∧ "deep learning"` 仅 47 篇：说明状态监测的方法类工作在 arXiv 上很少，
+  该领域的文献主体仍在期刊（MSSP / IEEE TIE / Measurement），但也意味着**方法学类工作在该领域更稀缺**。
