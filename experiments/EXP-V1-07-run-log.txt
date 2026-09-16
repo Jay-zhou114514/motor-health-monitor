@@ -1,0 +1,74 @@
+EXP-V1-07 主分析（IMS 0.25 s 窗 / MFPT 1.0 s 窗）
+     dataset                     feature_group      scheme  median_inflation  mean_fp_rate  median_condition  folds
+IMS 1st_test          RMS + centroid (problem) cond_target          0.336991      0.035714      9.900000e+01     12
+IMS 1st_test          RMS + centroid (problem)   empirical          0.472521      0.023810      2.647183e+09     12
+IMS 1st_test          RMS + centroid (problem) ledoit_wolf          0.336991      0.035714      5.459214e+01     12
+IMS 1st_test          RMS + kurtosis (control) cond_target          0.352423      0.011905      9.879793e+01     12
+IMS 1st_test          RMS + kurtosis (control)   empirical          0.400235      0.035714      4.840027e+04     12
+IMS 1st_test          RMS + kurtosis (control) ledoit_wolf          0.352150      0.011905      6.274942e+01     12
+IMS 1st_test crest + centroid (counterexample) cond_target          0.337792      0.035714      9.852584e+01     12
+IMS 1st_test crest + centroid (counterexample)   empirical          0.484641      0.023810      2.056947e+04     12
+IMS 1st_test crest + centroid (counterexample) ledoit_wolf          0.337437      0.035714      5.445142e+01     12
+IMS 2nd_test          RMS + centroid (problem) cond_target          0.407851      0.023810      9.899998e+01      6
+IMS 2nd_test          RMS + centroid (problem)   empirical          0.530610      0.142857      5.132369e+08      6
+IMS 2nd_test          RMS + centroid (problem) ledoit_wolf          0.407851      0.023810      1.987686e+01      6
+IMS 2nd_test          RMS + kurtosis (control) cond_target          0.127353      0.047619      9.884794e+01      6
+IMS 2nd_test          RMS + kurtosis (control)   empirical          0.332330      0.047619      6.437724e+04      6
+IMS 2nd_test          RMS + kurtosis (control) ledoit_wolf          0.127342      0.047619      2.334322e+00      6
+IMS 2nd_test crest + centroid (counterexample) cond_target          0.413701      0.023810      9.655418e+01      6
+IMS 2nd_test crest + centroid (counterexample)   empirical          0.345028      0.095238      3.907942e+03      6
+IMS 2nd_test crest + centroid (counterexample) ledoit_wolf          0.409007      0.023810      1.974215e+01      6
+IMS 4th_test          RMS + centroid (problem) cond_target          0.328811      0.071429      9.900000e+01      6
+IMS 4th_test          RMS + centroid (problem)   empirical          0.432775      0.095238      3.282465e+09      6
+IMS 4th_test          RMS + centroid (problem) ledoit_wolf          0.328811      0.071429      1.700815e+01      6
+IMS 4th_test          RMS + kurtosis (control) cond_target          0.411831      0.071429      9.882230e+01      6
+IMS 4th_test          RMS + kurtosis (control)   empirical          0.508654      0.047619      5.508576e+04      6
+IMS 4th_test          RMS + kurtosis (control) ledoit_wolf          0.411171      0.071429      2.706226e+01      6
+IMS 4th_test crest + centroid (counterexample) cond_target          0.330557      0.071429      9.819827e+01      6
+IMS 4th_test crest + centroid (counterexample)   empirical          0.483028      0.071429      1.212462e+04      6
+IMS 4th_test crest + centroid (counterexample) ledoit_wolf          0.329107      0.071429      1.697932e+01      6
+        MFPT          RMS + centroid (problem) cond_target          0.310600      0.090909      9.900000e+01      3
+        MFPT          RMS + centroid (problem)   empirical          0.797160      0.393939      2.282675e+09      3
+        MFPT          RMS + centroid (problem) ledoit_wolf          0.310599      0.090909      8.521547e+00      3
+        MFPT          RMS + kurtosis (control) cond_target          0.766480      0.090909      1.785862e+00      3
+        MFPT          RMS + kurtosis (control)   empirical          0.766480      0.090909      1.785862e+00      3
+        MFPT          RMS + kurtosis (control) ledoit_wolf          0.675197      0.121212      1.000000e+00      3
+        MFPT crest + centroid (counterexample) cond_target          0.310597      0.090909      9.897691e+01      3
+        MFPT crest + centroid (counterexample)   empirical          0.459472      0.151515      4.244190e+05      3
+        MFPT crest + centroid (counterexample) ledoit_wolf          0.310599      0.090909      8.521467e+00      3
+
+=== 预注册判据 ===
+P1（empirical）问题组膨胀比 > 1 的折占比 = 0.00% （0/24） → 不成立
+
+P2：各批次上收缩对问题组膨胀比的改变（正 = 降低）
+  IMS 1st_test       ledoit_wolf  Δ膨胀比 = +0.119
+  IMS 1st_test       cond_target  Δ膨胀比 = +0.119
+  IMS 2nd_test       ledoit_wolf  Δ膨胀比 = +0.214
+  IMS 2nd_test       cond_target  Δ膨胀比 = +0.214
+  IMS 4th_test       ledoit_wolf  Δ膨胀比 = +0.058
+  IMS 4th_test       cond_target  Δ膨胀比 = +0.058
+  MFPT               ledoit_wolf  Δ膨胀比 = +0.619
+  MFPT               cond_target  Δ膨胀比 = +0.619
+  → ledoit_wolf: 3/3 个 IMS 批次方向为正 → 成立
+  → cond_target: 3/3 个 IMS 批次方向为正 → 成立
+
+P3：跨数据集方向一致性（问题组，Δ膨胀比 > 0）
+  ledoit_wolf: IMS 3/3 为正，MFPT 1/1 为正 → 一致
+  cond_target: IMS 3/3 为正，MFPT 1/1 为正 → 一致
+
+=== 强制稳健性检查（IMS 用 0.5 s 窗重跑）===
+     dataset            feature_group      scheme  median_inflation  mean_fp_rate  folds
+IMS 1st_test RMS + centroid (problem) cond_target          0.311531      0.027778     12
+IMS 1st_test RMS + centroid (problem)   empirical          0.524825      0.055556     12
+IMS 1st_test RMS + centroid (problem) ledoit_wolf          0.311531      0.027778     12
+IMS 2nd_test RMS + centroid (problem) cond_target          0.418053      0.111111      6
+IMS 2nd_test RMS + centroid (problem)   empirical          0.549270      0.277778      6
+IMS 2nd_test RMS + centroid (problem) ledoit_wolf          0.418053      0.111111      6
+IMS 4th_test RMS + centroid (problem) cond_target          0.422521      0.166667      6
+IMS 4th_test RMS + centroid (problem)   empirical          0.721494      0.277778      6
+IMS 4th_test RMS + centroid (problem) ledoit_wolf          0.422521      0.166667      6
+
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_07_folds.csv
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_07_summary.csv
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_07_folds_w0.5.csv
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_07_cross_dataset.png

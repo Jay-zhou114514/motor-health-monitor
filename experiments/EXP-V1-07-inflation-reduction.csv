@@ -1,0 +1,9 @@
+dataset,scheme,mean_inflation_reduction
+IMS 1st_test,ledoit_wolf,0.11860520378032925
+IMS 1st_test,cond_target,0.11860519668095605
+IMS 2nd_test,ledoit_wolf,0.21417079528346752
+IMS 2nd_test,cond_target,0.21417076513577868
+IMS 4th_test,ledoit_wolf,0.05800143464141535
+IMS 4th_test,cond_target,0.05800143340220781
+MFPT,ledoit_wolf,0.6194782623989927
+MFPT,cond_target,0.6194782365620946
