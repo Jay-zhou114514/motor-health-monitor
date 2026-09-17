@@ -27,6 +27,7 @@ CONDITIONS = ("N15_M07_F10", "N09_M07_F10", "N15_M01_F10", "N15_M07_F04")
 DEFAULT_CONDITION = "N15_M07_F10"
 
 PADERBORN_SR = 64_000.0
+MAX_SAMPLES = 256_000
 VIBRATION_CHANNEL = "vibration_1"
 RECORD_SECONDS = 4.0
 
@@ -37,15 +38,20 @@ def recording_paths(bearing: str, condition: str = DEFAULT_CONDITION) -> list[Pa
     return sorted((PADERBORN_ROOT / bearing).glob(f"{condition}_{bearing}_*.mat"))
 
 
-def load_signal(path: Path, channel: str = VIBRATION_CHANNEL) -> np.ndarray:
-    """读取振动通道（默认 `vibration_1`）。"""
+def load_signal(
+    path: Path, channel: str = VIBRATION_CHANNEL, max_samples: int | None = MAX_SAMPLES
+) -> np.ndarray:
+    """读取振动通道（默认 `vibration_1`），并按 MAX_SAMPLES 截断（见 EXP-V2-02 修订 1）。"""
     content = sio.loadmat(path, simplify_cells=False)
     key = [k for k in content if not k.startswith("__")][0]
     record = content[key][0, 0]
     channels = record["Y"]
     for index in range(channels.shape[1]):
         if str(channels[0, index]["Name"][0]).strip().lower() == channel:
-            return np.ravel(channels[0, index]["Data"]).astype(float)
+            signal = np.ravel(channels[0, index]["Data"]).astype(float)
+    if max_samples is not None and signal.size > max_samples:
+        signal = signal[:max_samples]
+    return signal
     available = [str(channels[0, i]["Name"][0]) for i in range(channels.shape[1])]
     raise KeyError(f"通道 {channel} 不存在；可用通道：{available}")
 
@@ -53,8 +59,12 @@ def load_signal(path: Path, channel: str = VIBRATION_CHANNEL) -> np.ndarray:
 def record_feature_table(
     path: Path, condition: str, window_sec: float, step_sec: float, aggregate: bool
 ) -> pd.DataFrame:
+    signal = load_signal(path)
+    if window_sec is None:  # 单窗口模式：整条（截断后）记录 = 1 个窗口
+        window_sec = signal.size / PADERBORN_SR
+        step_sec = window_sec
     table = extract_features(
-        load_signal(path),
+        signal,
         PADERBORN_SR,
         window_sec=window_sec,
         step_sec=step_sec,
@@ -79,8 +89,8 @@ def record_feature_table(
 def load_healthy_dataset(
     condition: str = DEFAULT_CONDITION,
     bearings: tuple[str, ...] = HEALTHY_BEARINGS,
-    window_sec: float = 4.0,
-    step_sec: float = 4.0,
+    window_sec: float | None = None,
+    step_sec: float | None = None,
     aggregate: bool = False,
 ) -> tuple[dict[str, np.ndarray], pd.DataFrame]:
     """返回 ({记录名: 特征数组}, 明细表)。
