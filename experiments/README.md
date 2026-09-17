@@ -34,6 +34,7 @@ EXP-V1-01-threshold-sensitivity.csv    原始结果表（可复算）
 | EXP-V1-08 | 单类检测器基线对比（3σ / 马氏 / OC-SVM / iForest） | 已完成（2026-09-17） | src/exp_v1_08_baselines.py |
 | EXP-V1-09 | 训练内超参协议（嵌套 leave-one-file-out） | 已完成（2026-09-17） | src/exp_v1_09_hyperparams.py |
 | EXP-V1-10 | 模型选择过程不确定性（固定测试集 + 重采样 + 零模型 + 分数层指标） | 已完成（2026-09-17） | src/exp_v1_10_selection_uncertainty.py（+ src/exp_v1_10_extra_checks.py） |
+| EXP-V1-11 | 阈值估计噪声下限与样本量处方 | 已完成（2026-09-17；P1 成立、P2/P3 不成立） | src/exp_v1_11_sample_size_scaling.py |
 
 
 

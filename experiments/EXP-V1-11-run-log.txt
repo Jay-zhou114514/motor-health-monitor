@@ -1,0 +1,44 @@
+训练池：10 个文件 / 70 个窗口；固定测试集：14 个窗口
+扫描 n_train = [10, 20, 40, 80, 160, 320, 640]，每个规模 R = 150
+  V1_window: n_train = 10
+  V1_window: n_train = 20
+  V1_window: n_train = 40
+  V1_window: n_train = 80
+  V1_window: n_train = 160
+  V1_window: n_train = 320
+  V1_window: n_train = 640
+  V2_recording: n_train = 10
+  V2_recording: n_train = 20
+  V2_recording: n_train = 40
+  V2_recording: n_train = 80
+  V2_recording: n_train = 160
+  V2_recording: n_train = 320
+  V2_recording: n_train = 640
+
+=== 结果 ===
+     variant  n_train  sd_fp  mean_fp  n_repeat  sd_ideal  ratio_obs_ideal  n_eff  efficiency
+   V1_window       10 0.1262   0.1043       150    0.0315           4.0115 0.6214      0.0621
+   V1_window       20 0.0797   0.0543       150    0.0222           3.5808 1.5598      0.0780
+   V1_window       40 0.0660   0.0543       150    0.0157           4.1977 2.2701      0.0568
+   V1_window       80 0.0635   0.0652       150    0.0111           5.7110 2.4528      0.0307
+   V1_window      160 0.0453   0.0652       150    0.0079           5.7562 4.8289      0.0302
+   V1_window      320 0.0412   0.0605       150    0.0056           7.3998 5.8439      0.0183
+   V1_window      640 0.0508   0.0524       150    0.0039          12.9135 3.8379      0.0060
+V2_recording       10 0.1256   0.0819       150    0.0315           3.9921 0.6275      0.0627
+V2_recording       20 0.1136   0.0819       150    0.0222           5.1052 0.7674      0.0384
+V2_recording       40 0.0750   0.0490       150    0.0157           4.7673 1.7600      0.0440
+V2_recording       80 0.0610   0.0567       150    0.0111           5.4816 2.6624      0.0333
+V2_recording      160 0.0403   0.0619       150    0.0079           5.1181 6.1082      0.0382
+V2_recording      320 0.0382   0.0567       150    0.0056           6.8661 6.7879      0.0212
+V2_recording      640 0.0421   0.0471       150    0.0039          10.6937 5.5966      0.0087
+
+=== 预注册判据 ===
+V1_window: Spearman(n_train, SD) = -0.893 (p = 0.0068) -> P1 成立
+V2_recording: Spearman(n_train, SD) = -0.893 (p = 0.0068) -> P1 成立
+P2：SD_obs / SD_ideal 落在 [0.5, 5] 的比例 = 0.36 -> 不成立
+P3：V2 > V1 的规模占比 = 0.29 -> 不成立
+  ε = 0.01 → SD_ideal 处方 n ≥ 99 个窗口
+  ε = 0.02 → SD_ideal 处方 n ≥ 25 个窗口
+  ε = 0.05 → SD_ideal 处方 n ≥ 4 个窗口
+
+已保存曲线与图。
