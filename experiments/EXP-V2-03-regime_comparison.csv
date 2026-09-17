@@ -1,0 +1,13 @@
+arm,n,R1_within_%,R2_holdout_%
+S1_resample,10,9.12,76.29
+S1_resample,20,3.38,88.89
+S1_resample,40,2.04,93.78
+S1_resample,60,3.83,93.92
+S1_resample,80,4.21,91.19
+S1_resample,96,4.96,89.87
+S2_new_records,10,5.21,13.51
+S2_new_records,20,3.54,9.9
+S2_new_records,40,1.0,18.7
+S2_new_records,60,0.29,29.28
+S2_new_records,80,0.0,37.01
+S2_new_records,96,0.0,40.63

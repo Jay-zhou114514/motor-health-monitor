@@ -1,0 +1,73 @@
+Paderborn N15_M07_F10：120 条记录，7 个 unit
+  R1_within_bearing      fold=all    train= 96 test= 24
+  R2_bearing_holdout     fold=K001   train=100 test= 20
+  R2_bearing_holdout     fold=K002   train=100 test= 20
+  R2_bearing_holdout     fold=K003   train=100 test= 20
+  R2_bearing_holdout     fold=K004   train=100 test= 20
+  R2_bearing_holdout     fold=K005   train=100 test= 20
+  R2_bearing_holdout     fold=K006   train=100 test= 20
+    R1_within_bearing/all/S1_resample done
+    R1_within_bearing/all/S2_new_records done
+    R2_bearing_holdout/K001/S1_resample done
+    R2_bearing_holdout/K001/S2_new_records done
+    R2_bearing_holdout/K001/S3 done
+    R2_bearing_holdout/K002/S1_resample done
+    R2_bearing_holdout/K002/S2_new_records done
+    R2_bearing_holdout/K002/S3 done
+    R2_bearing_holdout/K003/S1_resample done
+    R2_bearing_holdout/K003/S2_new_records done
+    R2_bearing_holdout/K003/S3 done
+    R2_bearing_holdout/K004/S1_resample done
+    R2_bearing_holdout/K004/S2_new_records done
+    R2_bearing_holdout/K004/S3 done
+    R2_bearing_holdout/K005/S1_resample done
+    R2_bearing_holdout/K005/S2_new_records done
+    R2_bearing_holdout/K005/S3 done
+    R2_bearing_holdout/K006/S1_resample done
+    R2_bearing_holdout/K006/S2_new_records done
+    R2_bearing_holdout/K006/S3 done
+
+=== R2 各折 n=96 对比 ===
+            mean                        std               
+arm  S1_resample S2_new_records S1_resample S2_new_records
+fold                                                      
+K001       59.15           0.40       33.11           1.84
+K002       95.40          75.35        4.96           6.52
+K003      100.00           1.55        0.00           4.06
+K004      100.00          97.10        0.00          12.17
+K005      100.00          69.40        0.00          20.14
+K006       84.65           0.00        6.90           0.00
+
+=== S3：固定 20 条记录，改变训练轴承数 ===
+k_bearings    1.0    2.0    3.0    4.0    5.0
+fold                                         
+K001        31.63  42.21  32.95  33.94   6.84
+K002        35.50  38.56  22.57  32.56   9.37
+K003        32.39  40.75  33.51  36.67   5.67
+K004        33.80  45.61  47.57  33.98   3.76
+K005        30.07  36.42  42.70  38.28  38.03
+K006        26.66  37.34  25.40  22.19   0.00
+
+=== 预注册判据 ===
+P1（R2 中 SD96(S2) < SD96(S1)）：2/6
+P4（R2 中 S2 的 SD 随 n 下降）：5/6
+P5（S3 的 SD 随轴承数下降）：5/6
+P6（SD(k=5) < SD(k=1)）：5/6
+P7（SD(k=1)/SD(k=5) 每折）：[4.62, 3.79, 5.71, 8.98, 0.79, None]
+
+=== P2：绝对误报率水平对比（%）===
+           arm  n  R1_within_%  R2_holdout_%
+   S1_resample 10         9.12         76.29
+   S1_resample 20         3.38         88.89
+   S1_resample 40         2.04         93.78
+   S1_resample 60         3.83         93.92
+   S1_resample 80         4.21         91.19
+   S1_resample 96         4.96         89.87
+S2_new_records 10         5.21         13.51
+S2_new_records 20         3.54          9.90
+S2_new_records 40         1.00         18.70
+S2_new_records 60         0.29         29.28
+S2_new_records 80         0.00         37.01
+S2_new_records 96         0.00         40.63
+
+已保存曲线与图。
