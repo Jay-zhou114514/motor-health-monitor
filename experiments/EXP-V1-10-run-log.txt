@@ -1,0 +1,84 @@
+EXP-V1-10 选择过程不确定性
+参数：R=50, R_large=200, null=40x20, ncurve=5x15, force=False
+固定测试集：('2003.10.22.12.06.24.txt', '2003.10.22.12.09.13.txt')
+IMS 1st_test：12 个健康文件，84 个窗口
+
+=== 无选择过程的参考值（同一固定测试集）===
+  3-sigma RMS (no selection): FP rate = 0.0000（14 个窗口）
+  Isolation Forest (default cfg, no search): FP rate = 0.0714（14 个窗口）
+
+=== 真实数据：设计 A（测试集固定）===
+    design A / forest: 25/50
+    design A / forest: 50/50
+  [realA_R50] 完成 50 行，耗时 52.8 s
+
+=== 真实数据：设计 A 精度检查（R = 200）===
+    design A / forest: 25/200
+    design A / forest: 50/200
+    design A / forest: 75/200
+    design A / forest: 100/200
+    design A / forest: 125/200
+    design A / forest: 150/200
+    design A / forest: 175/200
+    design A / forest: 200/200
+  [realA_R200] 完成 200 行，耗时 211.8 s
+
+=== 真实数据：设计 B（测试集也重采样）===
+    design B / forest: 25/50
+    design B / forest: 50/50
+  [realB_R50] 完成 50 行，耗时 53.6 s
+
+=== 真实数据：设计 A / One-Class SVM（次要）===
+    design A / svm: 25/50
+    design A / svm: 50/50
+  [svmA_R50] 完成 50 行，耗时 1.8 s
+
+=== 零模型 N1（非参，iForest）===
+    null n1: 5/40
+    null n1: 10/40
+    null n1: 15/40
+    null n1: 20/40
+    null n1: 25/40
+    null n1: 30/40
+    null n1: 35/40
+    null n1: 40/40
+
+=== 零模型 N2（参数高斯，iForest）===
+    null n2: 5/40
+    null n2: 10/40
+    null n2: 15/40
+    null n2: 20/40
+    null n2: 25/40
+    null n2: 30/40
+    null n2: 35/40
+    null n2: 40/40
+
+=== 零模型 N1：样本量曲线 ===
+    n-curve k=6: mean modal share = 0.693
+    n-curve k=12: mean modal share = 0.827
+    n-curve k=24: mean modal share = 0.840
+    n-curve k=48: mean modal share = 0.827
+
+=== 汇总 ===
+                                     arm  n_replicates    modal_cfg  modal_share  modal_share_lo  modal_share_hi  n_distinct_cfg  entropy_norm  tie_share  test_fp_mean  test_fp_std  test_fp_min  test_fp_max  test_pct_mean_mean  test_pct_mean_std  val_fp_mean  seconds_total
+        forest / design A (R=50, frozen)            50   (200, 0.5)         0.88          0.7619          0.9438               4        0.3522      0.920        0.0386       0.0413       0.0000       0.1429              0.6426             0.0253       0.0114        52.7408
+               forest / design A (R=200)           200   (200, 0.5)         0.83          0.7718          0.8757               6        0.3911      0.895        0.0421       0.0419       0.0000       0.2143              0.6485             0.0267       0.0102       211.6965
+forest / design B (R=50, test resampled)            50   (200, 0.5)         0.66          0.5215          0.7756               5        0.6491      0.860        0.0286       0.0456       0.0000       0.1429              0.5541             0.0874       0.0114        53.5503
+     OC-SVM / design A (R=50, secondary)            50 (0.001, 0.1)         0.90          0.7864          0.9565               3        0.3572      0.800        0.4029       0.0760       0.2857       0.5714              0.6629             0.0397       0.1876         1.7851
+
+=== 预注册判据（含修订 1 / 修订 2）===
+P1a 模态占比 < 50%：0.880 -> 不成立
+P1b 不同配置数 >= 3：4 -> 成立
+P2 测试 FP 标准差 >= 2%：0.0413 -> 成立（分辨率 1/14 = 7.1%）
+P3 3σ RMS 为单一确定值：0.0000 -> 成立
+P4 连续尺度 test_pct_mean 标准差 > 0.02：0.0253 -> 成立
+P5 并列占比 >= 25%：0.920 -> 成立
+P6 观察值落在 N1 零模型 5–95% 区间 [0.548, 0.805]：0.880 -> 不成立（超出噪声基准）
+   N2 零模型 5–95% 区间：[0.598, 0.952]
+P7 设计 B 标准差 >= 设计 A：0.0456 vs 0.0413 -> 成立
+
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_replicates.csv
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_null.csv
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_summary.csv
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_10_selection_uncertainty.png
+已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_run.log

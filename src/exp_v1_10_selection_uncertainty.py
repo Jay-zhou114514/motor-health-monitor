@@ -1,18 +1,18 @@
 """EXP-V1-10：模型选择过程不确定性（量化）。
 
 预注册：experiments/EXP-V1-10-preregistration.md
-修订 1：experiments/EXP-V1-10-preregistration-amendment-1.md
+修订 1：experiments/EXP-V1-10-preregistration-amendment-1.md（零模型 + 分数层指标）
+修订 2：experiments/EXP-V1-10-preregistration-amendment-2.md（计算规模）
 
 核心纪律：
 - 固定测试集（IMS 1st_test 前 2 个文件）只用于最终评估；
 - 所有选择只发生在训练池内部的 fit / validation；
-- 零模型使用完全相同的协议，只替换数据生成方式。
+- 零模型使用完全相同的协议，只替换数据生成方式；
+- 每个实验臂各自落盘，支持断点续跑（--force 可强制重算）。
 
 输出：
-- outputs/exp_v1_10_replicates.csv
-- outputs/exp_v1_10_null.csv
-- outputs/exp_v1_10_ncurve.csv
-- outputs/exp_v1_10_summary.csv
+- outputs/exp_v1_10_arm_*.csv（逐臂检查点）
+- outputs/exp_v1_10_replicates.csv / _null.csv / _ncurve.csv / _summary.csv
 - outputs/figures/exp_v1_10_selection_uncertainty.png
 - outputs/exp_v1_10_run.log
 """
@@ -34,7 +34,6 @@ from sklearn.svm import OneClassSVM
 from config import FIGURES_DIR, OUTPUT_DIR
 from exp_v1_08_baselines import FEATURES, QUANTILE, RMSThreshold, load_healthy_records
 
-# 冻结网格（与 EXP-V1-09 一致；顺序即并列时的优先顺序）
 IF_GRID = [(n, m) for n in (200, 100) for m in (0.5, 0.8, 1.0)]
 OCSVM_GRID = [
     (nu, gamma)
@@ -42,7 +41,6 @@ OCSVM_GRID = [
     for gamma in ("scale", 0.1, 1.0, 10.0)
 ]
 
-# 冻结的固定测试集（IMS 1st_test 按文件名排序的前 2 个文件）
 TEST_FILES = ("2003.10.22.12.06.24.txt", "2003.10.22.12.09.13.txt")
 BATCH = "IMS 1st_test"
 
@@ -104,14 +102,12 @@ def score_model(state, data: np.ndarray) -> np.ndarray:
 
 
 def percentile_of(state, data: np.ndarray) -> np.ndarray:
-    """窗口分数在拟合集分数经验分布中的分位（尺度不变，可跨配置比较）。"""
     scores = score_model(state, data)
     fit_scores = state["fit_scores"]
     return np.searchsorted(fit_scores, scores, side="right") / len(fit_scores)
 
 
 def run_selection(method: str, grid, fit_tables, val_tables, test_tables) -> dict:
-    """一次完整的「fit -> validation 选参 -> 固定测试集评估」。"""
     fit_blocks = list(fit_tables.values())
     val_block = np.vstack(list(val_tables.values()))
     test_block = np.vstack(list(test_tables.values()))
@@ -138,7 +134,7 @@ def run_selection(method: str, grid, fit_tables, val_tables, test_tables) -> dic
         )
     best_val = min(item["val_fp"] for item in outcomes)
     tied = [item for item in outcomes if item["val_fp"] <= best_val + 1e-12]
-    chosen = dict(tied[0])  # 冻结网格顺序 = 并列时的确定性规则
+    chosen = dict(tied[0])
     chosen["cfg"] = str(chosen["cfg"])
     chosen["n_tied_at_min"] = len(tied)
     chosen["seconds"] = time.perf_counter() - start
@@ -148,10 +144,11 @@ def run_selection(method: str, grid, fit_tables, val_tables, test_tables) -> dic
 def resample_split(rng, names, n_fit: int, n_val: int, n_test: int = 0):
     order = rng.permutation(len(names))
     picked = [names[i] for i in order]
-    fit = picked[:n_fit]
-    val = picked[n_fit : n_fit + n_val]
-    test = picked[n_fit + n_val : n_fit + n_val + n_test]
-    return fit, val, test
+    return (
+        picked[:n_fit],
+        picked[n_fit : n_fit + n_val],
+        picked[n_fit + n_val : n_fit + n_val + n_test],
+    )
 
 
 def subset(tables, names):
@@ -160,10 +157,7 @@ def subset(tables, names):
 
 def run_real_arm(arrays, method, grid, r, seed, design, fixed_test) -> list[dict]:
     names_all = sorted(arrays)
-    if design == "A":
-        pool = [name for name in names_all if name not in fixed_test]
-    else:
-        pool = names_all
+    pool = [name for name in names_all if name not in fixed_test] if design == "A" else names_all
     rows: list[dict] = []
     rng = np.random.default_rng(seed)
     for index in range(r):
@@ -174,11 +168,7 @@ def run_real_arm(arrays, method, grid, r, seed, design, fixed_test) -> list[dict
             fit_names, val_names, test_names = resample_split(rng, pool, 7, 3, 2)
             test_tables = subset(arrays, test_names)
         outcome = run_selection(
-            method,
-            grid,
-            subset(arrays, fit_names),
-            subset(arrays, val_names),
-            test_tables,
+            method, grid, subset(arrays, fit_names), subset(arrays, val_names), test_tables
         )
         outcome.update(
             {
@@ -208,46 +198,45 @@ def build_null_dataset(rng, kind, shapes, pool_windows, mu, cov):
     return pseudo
 
 
-def run_null_arm(
-    arrays, method, grid, m_datasets, r, seed, kind, fixed_test
-) -> list[dict]:
+def run_null_arm(arrays, method, grid, m_datasets, r, seed, kind, fixed_test,
+                 checkpoint: Path | None = None) -> list[dict]:
     pool = sorted(arrays)
     pool_windows = np.vstack([arrays[name] for name in pool])
     shapes = {name: len(arrays[name]) for name in pool}
     if kind == "n2":
         lw = LedoitWolf().fit(pool_windows)
-        mu = lw.location_
-        cov = lw.covariance_
+        mu, cov = lw.location_, lw.covariance_
     else:
         mu = cov = None
     rows: list[dict] = []
-    for dataset_index in range(m_datasets):
+    start_index = 0
+    if checkpoint is not None and checkpoint.exists():
+        existing = pd.read_csv(checkpoint).to_dict("records")
+        if existing:
+            rows = existing
+            start_index = int(max(row["dataset_index"] for row in rows)) + 1
+            print(f"    [resume] 零模型 {kind}：从数据集 {start_index} 继续", flush=True)
+    for dataset_index in range(start_index, m_datasets):
         rng = np.random.default_rng(seed + 100_003 * dataset_index)
         pseudo = build_null_dataset(rng, kind, shapes, pool_windows, mu, cov)
         cfg_counts: Counter = Counter()
-        val_fps = []
-        test_fps = []
-        tie_flags = []
+        val_fps, test_fps, tie_flags = [], [], []
         for _ in range(r):
             fit_names, val_names, _ = resample_split(rng, pool, 7, 3)
             outcome = run_selection(
-                method,
-                grid,
-                subset(pseudo, fit_names),
-                subset(pseudo, val_names),
+                method, grid, subset(pseudo, fit_names), subset(pseudo, val_names),
                 subset(arrays, fixed_test),
             )
             cfg_counts[outcome["cfg"]] += 1
             val_fps.append(outcome["val_fp"])
             test_fps.append(outcome["test_fp"])
             tie_flags.append(outcome["n_tied_at_min"] >= 2)
-        modal_share = cfg_counts.most_common(1)[0][1] / r
         rows.append(
             {
                 "null_kind": kind,
                 "dataset_index": dataset_index,
                 "n_replicates": r,
-                "modal_share": modal_share,
+                "modal_share": cfg_counts.most_common(1)[0][1] / r,
                 "n_distinct_cfg": len(cfg_counts),
                 "tie_share": float(np.mean(tie_flags)),
                 "val_fp_mean": float(np.mean(val_fps)),
@@ -255,17 +244,29 @@ def run_null_arm(
                 "test_fp_std": float(np.std(test_fps, ddof=1)),
             }
         )
-        if (dataset_index + 1) % 10 == 0:
+        if checkpoint is not None and ((dataset_index + 1) % 5 == 0 or dataset_index == m_datasets - 1):
+            pd.DataFrame(rows).to_csv(checkpoint, index=False)
+        if (dataset_index + 1) % 5 == 0:
             print(f"    null {kind}: {dataset_index + 1}/{m_datasets}", flush=True)
     return rows
 
 
-def run_ncurve_arm(arrays, method, grid, ks, m_datasets, r, seed, fixed_test) -> list[dict]:
+def run_ncurve_arm(arrays, method, grid, ks, m_datasets, r, seed, fixed_test,
+                   checkpoint: Path | None = None) -> list[dict]:
     pool = sorted(arrays)
     pool_windows = np.vstack([arrays[name] for name in pool])
     rows: list[dict] = []
+    done: set[tuple[int, int]] = set()
+    if checkpoint is not None and checkpoint.exists():
+        existing = pd.read_csv(checkpoint).to_dict("records")
+        if existing:
+            rows = existing
+            done = {(int(row["n_files"]), int(row["dataset_index"])) for row in rows}
+            print(f"    [resume] 样本量曲线：已完成 {len(done)} 个组合", flush=True)
     for k in ks:
         for dataset_index in range(m_datasets):
+            if (k, dataset_index) in done:
+                continue
             rng = np.random.default_rng(seed + 7_919 * k + 101 * dataset_index)
             shapes = {f"pseudo_{i:03d}": 7 for i in range(k)}
             pseudo = build_null_dataset(rng, "n1", shapes, pool_windows, None, None)
@@ -273,15 +274,9 @@ def run_ncurve_arm(arrays, method, grid, ks, m_datasets, r, seed, fixed_test) ->
             cfg_counts: Counter = Counter()
             test_fps = []
             for _ in range(r):
-                n_val = 3
-                fit_names, val_names, _ = resample_split(
-                    rng, names, max(3, k - n_val), n_val
-                )
+                fit_names, val_names, _ = resample_split(rng, names, max(3, k - 3), 3)
                 outcome = run_selection(
-                    method,
-                    grid,
-                    subset(pseudo, fit_names),
-                    subset(pseudo, val_names),
+                    method, grid, subset(pseudo, fit_names), subset(pseudo, val_names),
                     subset(arrays, fixed_test),
                 )
                 cfg_counts[outcome["cfg"]] += 1
@@ -297,12 +292,15 @@ def run_ncurve_arm(arrays, method, grid, ks, m_datasets, r, seed, fixed_test) ->
                     "test_fp_std": float(np.std(test_fps, ddof=1)),
                 }
             )
+            if checkpoint is not None:
+                pd.DataFrame(rows).to_csv(checkpoint, index=False)
         subset_rows = [row for row in rows if row["n_files"] == k]
-        print(
-            f"    n-curve k={k}: mean modal share = "
-            f"{np.mean([row['modal_share'] for row in subset_rows]):.3f}",
-            flush=True,
-        )
+        if subset_rows:
+            print(
+                f"    n-curve k={k}: mean modal share = "
+                f"{np.mean([row['modal_share'] for row in subset_rows]):.3f}",
+                flush=True,
+            )
     return rows
 
 
@@ -365,7 +363,6 @@ def reference_controls(arrays, fixed_test) -> list[dict]:
     )
     state = fit_model("forest", train, (200, 0.8))
     scores = score_model(state, test)
-    pct = percentile_of(state, test)
     rows.append(
         {
             "control": "Isolation Forest (default cfg, no search)",
@@ -389,7 +386,7 @@ def make_figure(replicates, null_rows, ncurve_rows, summary, path: Path) -> None
     frame_summary = summary.set_index("arm")
     figure, axes = plt.subplots(2, 2, figsize=(13, 9))
 
-    labels = [label for label in frame_summary.index]
+    labels = list(frame_summary.index)
     axes[0, 0].barh(
         np.arange(len(labels)),
         [frame_summary.loc[label, "modal_share"] for label in labels],
@@ -398,26 +395,22 @@ def make_figure(replicates, null_rows, ncurve_rows, summary, path: Path) -> None
     for index, label in enumerate(labels):
         value = frame_summary.loc[label, "modal_share"]
         axes[0, 0].text(
-            value + 0.01,
-            index,
+            value + 0.01, index,
             f"{value:.2f} ({int(frame_summary.loc[label, 'n_distinct_cfg'])} cfgs)",
-            va="center",
-            fontsize=8,
+            va="center", fontsize=8,
         )
     axes[0, 0].set_yticks(np.arange(len(labels)))
     axes[0, 0].set_yticklabels(labels, fontsize=8)
-    axes[0, 0].set_xlim(0, 1.25)
+    axes[0, 0].set_xlim(0, 1.35)
     axes[0, 0].set_xlabel("Modal share of selected config")
     axes[0, 0].set_title("Selection stability")
 
     n1 = pd.DataFrame([row for row in null_rows if row["null_kind"] == "n1"])
-    axes[0, 1].hist(
-        n1["test_fp_std"] * 100, bins=15, alpha=0.6, label="null N1 (100 datasets)"
-    )
+    if len(n1):
+        axes[0, 1].hist(n1["test_fp_std"] * 100, bins=15, alpha=0.6,
+                        label=f"null N1 ({len(n1)} datasets)")
     axes[0, 1].axvline(
-        forest_a["test_fp"].std(ddof=1) * 100,
-        color="crimson",
-        linewidth=2,
+        forest_a["test_fp"].std(ddof=1) * 100, color="crimson", linewidth=2,
         label="observed (design A)",
     )
     axes[0, 1].set_xlabel("SD of test FP rate across replicates (%)")
@@ -425,18 +418,16 @@ def make_figure(replicates, null_rows, ncurve_rows, summary, path: Path) -> None
     axes[0, 1].legend(fontsize=8)
 
     axes[1, 0].hist(forest_a["test_pct_mean"], bins=15, alpha=0.7, color="tab:green")
+    axes[1, 0].axvline(0.99, color="gray", linestyle="--", linewidth=1)
     axes[1, 0].set_xlabel("Mean training-percentile of test windows")
     axes[1, 0].set_title("Continuous-scale test score (design A)")
-    axes[1, 0].axvline(0.99, color="gray", linestyle="--", linewidth=1)
 
     if ncurve_rows:
         ncurve = pd.DataFrame(ncurve_rows)
         grouped = ncurve.groupby("n_files")["modal_share"]
         axes[1, 1].errorbar(
-            grouped.mean().index,
-            grouped.mean().values,
-            yerr=grouped.std(ddof=1).fillna(0).values,
-            marker="o",
+            grouped.mean().index, grouped.mean().values,
+            yerr=grouped.std(ddof=1).fillna(0).values, marker="o",
         )
         axes[1, 1].set_xscale("log")
         axes[1, 1].set_xlabel("Number of files available for selection")
@@ -450,16 +441,30 @@ def make_figure(replicates, null_rows, ncurve_rows, summary, path: Path) -> None
     plt.close(figure)
 
 
+def load_or_run(tag: str, loader, force: bool, cache_dir: Path):
+    path = cache_dir / f"exp_v1_10_arm_{tag}.csv"
+    if path.exists() and not force:
+        rows = pd.read_csv(path).to_dict("records")
+        print(f"  [resume] 复用 {path.name}（{len(rows)} 行）", flush=True)
+        return rows
+    start = time.perf_counter()
+    rows = loader()
+    pd.DataFrame(rows).to_csv(path, index=False)
+    print(f"  [{tag}] 完成 {len(rows)} 行，耗时 {time.perf_counter() - start:.1f} s", flush=True)
+    return rows
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--r-primary", type=int, default=50)
     parser.add_argument("--r-large", type=int, default=200)
-    parser.add_argument("--null-datasets", type=int, default=100)
-    parser.add_argument("--null-r", type=int, default=50)
-    parser.add_argument("--ncurve-datasets", type=int, default=10)
-    parser.add_argument("--ncurve-r", type=int, default=30)
+    parser.add_argument("--null-datasets", type=int, default=40)
+    parser.add_argument("--null-r", type=int, default=20)
+    parser.add_argument("--ncurve-datasets", type=int, default=5)
+    parser.add_argument("--ncurve-r", type=int, default=15)
     parser.add_argument("--skip-ncurve", action="store_true")
     parser.add_argument("--skip-svm", action="store_true")
+    parser.add_argument("--force", action="store_true")
     parser.add_argument("--tag", type=str, default="")
     args = parser.parse_args()
 
@@ -471,7 +476,7 @@ def main() -> None:
     print("EXP-V1-10 选择过程不确定性")
     print(f"参数：R={args.r_primary}, R_large={args.r_large}, "
           f"null={args.null_datasets}x{args.null_r}, "
-          f"ncurve={args.ncurve_datasets}x{args.ncurve_r}")
+          f"ncurve={args.ncurve_datasets}x{args.ncurve_r}, force={args.force}")
     print(f"固定测试集：{TEST_FILES}")
 
     datasets = load_healthy_records()
@@ -480,62 +485,61 @@ def main() -> None:
     if missing:
         raise SystemExit(f"固定测试文件缺失：{missing}")
     arrays = to_arrays(tables)
-    print(f"{BATCH}：{len(arrays)} 个健康文件，"
-          f"{sum(len(v) for v in arrays.values())} 个窗口")
+    print(f"{BATCH}：{len(arrays)} 个健康文件，{sum(len(v) for v in arrays.values())} 个窗口")
 
     controls = reference_controls(arrays, TEST_FILES)
     print("\n=== 无选择过程的参考值（同一固定测试集）===")
     for row in controls:
-        print(f"  {row['control']}: FP rate = {row['test_fp']:.4f} "
+        print(f"  {row['control']}: FP rate = {row['test_fp']:.4f}"
               f"（{row['n_test_windows']} 个窗口）")
 
-    replicates: list[dict] = []
-    print("\n=== 真实数据：设计 A（测试集固定，R = %d） ===" % args.r_primary)
-    replicates += run_real_arm(
-        arrays, "forest", IF_GRID, args.r_primary, 20260917, "A", TEST_FILES
-    )
-    print(f"\n=== 真实数据：设计 A 精度检查（R = {args.r_large}） ===")
-    large_rows = run_real_arm(
-        arrays, "forest", IF_GRID, args.r_large, 777001, "A", TEST_FILES
-    )
-    print("\n=== 真实数据：设计 B（测试集也重采样，R = %d） ===" % args.r_primary)
-    design_b = run_real_arm(
-        arrays, "forest", IF_GRID, args.r_primary, 55501, "B", TEST_FILES
-    )
-    svm_rows: list[dict] = []
+    print("\n=== 真实数据：设计 A（测试集固定）===")
+    replicate_frame = pd.DataFrame(load_or_run(
+        f"realA_R{args.r_primary}",
+        lambda: run_real_arm(arrays, "forest", IF_GRID, args.r_primary, 20260917, "A", TEST_FILES),
+        args.force, OUTPUT_DIR,
+    ))
+    print(f"\n=== 真实数据：设计 A 精度检查（R = {args.r_large}）===")
+    large_frame = pd.DataFrame(load_or_run(
+        f"realA_R{args.r_large}",
+        lambda: run_real_arm(arrays, "forest", IF_GRID, args.r_large, 777001, "A", TEST_FILES),
+        args.force, OUTPUT_DIR,
+    ))
+    print("\n=== 真实数据：设计 B（测试集也重采样）===")
+    design_b_frame = pd.DataFrame(load_or_run(
+        f"realB_R{args.r_primary}",
+        lambda: run_real_arm(arrays, "forest", IF_GRID, args.r_primary, 55501, "B", TEST_FILES),
+        args.force, OUTPUT_DIR,
+    ))
+    svm_frame = pd.DataFrame()
     if not args.skip_svm:
-        print("\n=== 真实数据：设计 A / One-Class SVM（次要） ===")
-        svm_rows = run_real_arm(
-            arrays, "svm", OCSVM_GRID, args.r_primary, 31337, "A", TEST_FILES
-        )
+        print("\n=== 真实数据：设计 A / One-Class SVM（次要）===")
+        svm_frame = pd.DataFrame(load_or_run(
+            f"svmA_R{args.r_primary}",
+            lambda: run_real_arm(arrays, "svm", OCSVM_GRID, args.r_primary, 31337, "A", TEST_FILES),
+            args.force, OUTPUT_DIR,
+        ))
 
-    print("\n=== 零模型 N1（非参，iForest） ===")
+    print("\n=== 零模型 N1（非参，iForest）===")
     null_n1 = run_null_arm(
-        arrays, "forest", IF_GRID, args.null_datasets, args.null_r, 909, "n1", TEST_FILES
+        arrays, "forest", IF_GRID, args.null_datasets, args.null_r, 909, "n1", TEST_FILES,
+        checkpoint=OUTPUT_DIR / "exp_v1_10_arm_nullN1.csv",
     )
-    print("\n=== 零模型 N2（参数高斯，iForest） ===")
+    print("\n=== 零模型 N2（参数高斯，iForest）===")
     null_n2 = run_null_arm(
-        arrays, "forest", IF_GRID, args.null_datasets, args.null_r, 1234, "n2", TEST_FILES
+        arrays, "forest", IF_GRID, args.null_datasets, args.null_r, 1234, "n2", TEST_FILES,
+        checkpoint=OUTPUT_DIR / "exp_v1_10_arm_nullN2.csv",
     )
 
     ncurve_rows: list[dict] = []
     if not args.skip_ncurve:
         print("\n=== 零模型 N1：样本量曲线 ===")
         ncurve_rows = run_ncurve_arm(
-            arrays,
-            "forest",
-            IF_GRID,
-            [6, 12, 24, 48],
-            args.ncurve_datasets,
-            args.ncurve_r,
-            4321,
-            TEST_FILES,
+            arrays, "forest", IF_GRID, [6, 12, 24, 48],
+            args.ncurve_datasets, args.ncurve_r, 4321, TEST_FILES,
+            checkpoint=OUTPUT_DIR / "exp_v1_10_arm_ncurve.csv",
         )
 
-    replicate_frame = pd.DataFrame(replicates)
-    large_frame = pd.DataFrame(large_rows)
-    design_b_frame = pd.DataFrame(design_b)
-    svm_frame = pd.DataFrame(svm_rows)
     all_replicates = pd.concat(
         [replicate_frame, large_frame, design_b_frame, svm_frame], ignore_index=True
     )
@@ -546,6 +550,7 @@ def main() -> None:
     ncurve_frame = pd.DataFrame(ncurve_rows)
     if len(ncurve_frame):
         ncurve_frame.to_csv(OUTPUT_DIR / "exp_v1_10_ncurve.csv", index=False)
+    pd.DataFrame(controls).to_csv(OUTPUT_DIR / "exp_v1_10_controls.csv", index=False)
 
     summary_rows = [
         summarize(replicate_frame.to_dict("records"), f"forest / design A (R={args.r_primary}, frozen)"),
@@ -553,7 +558,9 @@ def main() -> None:
         summarize(design_b_frame.to_dict("records"), f"forest / design B (R={args.r_primary}, test resampled)"),
     ]
     if len(svm_frame):
-        summary_rows.append(summarize(svm_frame.to_dict("records"), f"OC-SVM / design A (R={args.r_primary}, secondary)"))
+        summary_rows.append(
+            summarize(svm_frame.to_dict("records"), f"OC-SVM / design A (R={args.r_primary}, secondary)")
+        )
     summary = pd.DataFrame(summary_rows)
     summary.to_csv(OUTPUT_DIR / "exp_v1_10_summary.csv", index=False)
 
@@ -566,37 +573,32 @@ def main() -> None:
     observed_share = float(summary.loc[0, "modal_share"])
     lo_n1, hi_n1 = np.percentile(n1_share, [5, 95])
     lo_n2, hi_n2 = np.percentile(n2_share, [5, 95])
-    print("\n=== 预注册判据（含修订 1） ===")
+
+    print("\n=== 预注册判据（含修订 1 / 修订 2）===")
     p1a = observed_share < 0.5
     p1b = int(summary.loc[0, "n_distinct_cfg"]) >= 3
-    print(f"P1a 模态占比 < 50%：{observed_share:.3f} -> "
-          f"{'成立' if p1a else '不成立'}")
-    print(f"P1b 不同配置数 >= 3：{int(summary.loc[0, 'n_distinct_cfg'])} -> "
-          f"{'成立' if p1b else '不成立'}")
+    print(f"P1a 模态占比 < 50%：{observed_share:.3f} -> {'成立' if p1a else '不成立'}")
+    print(f"P1b 不同配置数 >= 3：{int(summary.loc[0, 'n_distinct_cfg'])} -> {'成立' if p1b else '不成立'}")
     p2 = float(summary.loc[0, "test_fp_std"]) >= 0.02
     print(f"P2 测试 FP 标准差 >= 2%：{summary.loc[0, 'test_fp_std']:.4f} -> "
           f"{'成立' if p2 else '不成立'}（分辨率 1/14 = 7.1%）")
-    p3 = True
-    print(f"P3 3σ RMS 为单一确定值：{controls[0]['test_fp']:.4f} -> "
-          f"{'成立' if p3 else '不成立'}")
+    print(f"P3 3σ RMS 为单一确定值：{controls[0]['test_fp']:.4f} -> 成立")
     p4 = float(summary.loc[0, "test_pct_mean_std"]) > 0.02
-    print(f"P4 连续尺度 test_pct_mean 标准差 > 0.02："
-          f"{summary.loc[0, 'test_pct_mean_std']:.4f} -> "
+    print(f"P4 连续尺度 test_pct_mean 标准差 > 0.02：{summary.loc[0, 'test_pct_mean_std']:.4f} -> "
           f"{'成立' if p4 else '不成立'}")
     p5 = float(summary.loc[0, "tie_share"]) >= 0.25
-    print(f"P5 并列占比 >= 25%：{summary.loc[0, 'tie_share']:.3f} -> "
-          f"{'成立' if p5 else '不成立'}")
+    print(f"P5 并列占比 >= 25%：{summary.loc[0, 'tie_share']:.3f} -> {'成立' if p5 else '不成立'}")
     p6 = lo_n1 <= observed_share <= hi_n1
-    print(f"P6 观察值落在 N1 零模型 5–95% 区间 [{lo_n1:.3f}, {hi_n1:.3f}]："
-          f"{observed_share:.3f} -> {'成立（与噪声不可区分）' if p6 else '不成立（超出噪声基准）'}")
+    print(f"P6 观察值落在 N1 零模型 5–95% 区间 [{lo_n1:.3f}, {hi_n1:.3f}]：{observed_share:.3f} -> "
+          f"{'成立（与噪声不可区分）' if p6 else '不成立（超出噪声基准）'}")
     print(f"   N2 零模型 5–95% 区间：[{lo_n2:.3f}, {hi_n2:.3f}]")
     p7 = float(summary.loc[2, "test_fp_std"]) >= float(summary.loc[0, "test_fp_std"])
-    print(f"P7 设计 B 标准差 >= 设计 A："
-          f"{summary.loc[2, 'test_fp_std']:.4f} vs {summary.loc[0, 'test_fp_std']:.4f} -> "
-          f"{'成立' if p7 else '不成立'}")
+    print(f"P7 设计 B 标准差 >= 设计 A：{summary.loc[2, 'test_fp_std']:.4f} vs "
+          f"{summary.loc[0, 'test_fp_std']:.4f} -> {'成立' if p7 else '不成立'}")
 
     figure_path = FIGURES_DIR / "exp_v1_10_selection_uncertainty.png"
-    make_figure(replicates, null_n1 + null_n2, ncurve_rows, summary, figure_path)
+    make_figure(replicate_frame.to_dict("records"), null_n1 + null_n2, ncurve_rows,
+                summary, figure_path)
     print(f"\n已保存：{OUTPUT_DIR / 'exp_v1_10_replicates.csv'}")
     print(f"已保存：{OUTPUT_DIR / 'exp_v1_10_null.csv'}")
     print(f"已保存：{OUTPUT_DIR / 'exp_v1_10_summary.csv'}")
