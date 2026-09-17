@@ -314,3 +314,46 @@ git push
 
 
 
+
+---
+
+# 2026-09-18 交接状态（明天从这里继续）
+
+## 一、今日完成
+
+1. **自审**（`docs/AUDIT_2026-09-18_self_check.md`）：发现并确认 **Paderborn 轴承级泄漏**
+   （训练与测试共享全部 6 颗轴承），违反本项目冻结协议的独立单元规则。
+2. **EXP-V2-03（P0）**：within-bearing vs bearing-level holdout 对照实验，已完成并入库。
+3. **数据迁移**：大数据集从 C 盘迁到 **E 盘**（`E:\MotorHealthMonitorData`），
+   代码改为可配置数据根（`src/config.py` 的 `DATASET_ROOT`，E 盘不存在时自动回退）。
+4. **PRONOSTIA 已下载并解压**：42,744 个文件，17 颗轴承（Learning_set 6 + Full_Test_Set 11）。
+
+## 二、EXP-V2-03 的关键结果（论文的核心新证据）
+
+| 口径 | n=96 时的误报率（S2 真实新增记录） |
+| --- | ---: |
+| within-bearing（旧） | **0.00%** |
+| **bearing-level holdout（新）** | **40.63%**（个别折 69–97%） |
+
+**独立单元臂（S3，固定 20 条记录，改变训练轴承数）**：
+从 1 颗轴承增到 5 颗，误报率 SD 中位数下降约 **4.6 倍**（5/6 折成立）。
+
+**P1 失败**（2/6）：R2 下 S1 常饱和在 100% 误报 → SD = 0 → 呈现"退化稳定性"。
+已如实记录，论文须把"饱和"作为独立失效模式写出。
+
+## 三、明天要做的
+
+1. **等你给 XJTU-SY**（15 颗轴承，约 10 GB 量级）→ 放到
+   `E:\MotorHealthMonitorData\xjtu_sy\`，我做特征提取与独立单元实验
+   （S3 的 k 可做到 14，这是 6 颗轴承做不到的）。
+2. **写 XJTU-SY 的预注册**——必须先解决"健康阶段如何定义"（cycle 前 X%？敏感性 5/10/20%），
+   否则误报率是循环论证。
+3. **更新论文叙事**：主线改为"**口径决定结论 + 独立单元要求**"，S1 降为 sanity check；
+   `CLAIM_EVIDENCE_MAP.md` 补 C8/C9；标注 EXP-V2-01/02 的绝对指标属 within-bearing 口径。
+4. Discussion 机制段（阈值估计噪声 vs 分数间距）——等叙事改完再写。
+
+## 四、环境备注
+
+- 数据根：`E:\MotorHealthMonitorData`（paderborn 4.97 GB / pronostia 0.7 GB+解压 / xjtu_sy 待放）
+- 网络：今天出现过间歇性 SSL/回环阻断；PRONOSTIA 走的 GitHub codeload zip 成功
+- 后台无遗留任务：`EXP-V2-03` 已完成，`PRONOSTIA` 解压已完成
