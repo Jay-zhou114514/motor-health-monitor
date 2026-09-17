@@ -64,6 +64,7 @@ def record_feature_table(
     table["bearing"] = path.parent.name
     table["condition"] = condition
     table["record_number"] = int(path.stem.rsplit("_", 1)[-1])
+    table["record_id"] = path.name
     if aggregate and len(table):
         row = table[FEATURES].mean().to_frame().T
         row["bearing"] = path.parent.name

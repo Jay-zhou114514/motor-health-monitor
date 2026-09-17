@@ -1,0 +1,54 @@
+Paderborn N15_M07_F10：120 条记录
+  固定测试集：24 条（记录号 (17, 18, 19, 20)，覆盖 6 个轴承）
+  训练池：96 条
+  训练池按轴承：
+         count    mean
+bearing               
+K001        16  0.4028
+K002        16  0.2303
+K003        16  0.3619
+K004        16  0.1708
+K005        16  0.1983
+K006        16  0.3815
+  S1 固定子集：20 条
+  S1_resample: n = 5
+  S1_resample: n = 10
+  S1_resample: n = 20
+  S1_resample: n = 40
+  S1_resample: n = 60
+  S1_resample: n = 80
+  S1_resample: n = 96
+  S2_new_records: n = 5
+  S2_new_records: n = 10
+  S2_new_records: n = 20
+  S2_new_records: n = 40
+  S2_new_records: n = 60
+  S2_new_records: n = 80
+  S2_new_records: n = 96
+
+=== 结果 ===
+           arm  n_train  sd_fp  mean_fp  n_distinct  n_repeat  sd_ideal    n_eff  efficiency
+   S1_resample        5 0.0000   0.0000      4.5267       150    0.0445      inf         inf
+   S1_resample       10 0.2341   0.1275      7.9733       150    0.0315   0.1807      0.0181
+   S1_resample       20 0.1655   0.0928     12.6533       150    0.0222   0.3615      0.0181
+   S1_resample       40 0.1607   0.1139     17.3200       150    0.0157   0.3835      0.0096
+   S1_resample       60 0.1818   0.1961     19.1600       150    0.0128   0.2997      0.0050
+   S1_resample       80 0.1792   0.2017     19.6133       150    0.0111   0.3083      0.0039
+   S1_resample       96 0.1804   0.2017     19.8200       150    0.0102   0.3043      0.0032
+S2_new_records        5 0.0000   0.0000      5.0000       150    0.0445      inf         inf
+S2_new_records       10 0.0724   0.0517     10.0000       150    0.0315   1.8908      0.1891
+S2_new_records       20 0.0469   0.0383     20.0000       150    0.0222   4.4946      0.2247
+S2_new_records       40 0.0210   0.0092     40.0000       150    0.0157  22.5134      0.5628
+S2_new_records       60 0.0099   0.0025     60.0000       150    0.0128 100.4323      1.6739
+S2_new_records       80 0.0048   0.0006     80.0000       150    0.0111 430.5697      5.3821
+S2_new_records       96 0.0000   0.0000     96.0000       150    0.0102      inf         inf
+
+=== 预注册判据 ===
+P1（S2 的 n_eff 持续增长）：rho = 0.360 (p=0.4271), 末点/首点 = nan -> 不成立
+P2（S1 的 n_eff 饱和）：rho = -0.321 (p=0.4821), 末点/首点 = 0.00 -> 成立
+P3（相同 n 下 S2 效率高于 S1）：6/7 -> 成立
+  S1: log-log 斜率 = nan（R² = nan）
+  S2: log-log 斜率 = nan（R² = nan）
+P4（S2 斜率更接近 −0.5）：nan vs nan -> 不成立
+
+已保存曲线与图。
