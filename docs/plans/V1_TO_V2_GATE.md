@@ -103,7 +103,7 @@ Q4 决定 Layer 3 能否作为贡献，而不是只有 Layer 1 + Layer 2；Q5 �
 | G1 必答问题 | ✅ | EXP-V1-01 ~ 09 产物齐备 |
 | G2 冻结清单 | ✅ | `docs/FROZEN_PROTOCOL.md`（v1.0，2026-09-17） |
 | G3 Layer 3 | ✅ | EXP-V1-10 完成；Layer 3 由"单点观察"升级为量化结果，**措辞已按结果改写**（见下） |
-| G4 V2-01 准备 | ⬜ | 需核实 Paderborn 独立单元定义与许可，并写预注册 |
+| G4 V2-01 准备 | 🔶 | 已核实：权威源 = 帕德堡 KAt 数据中心目录（`groups.uni-paderborn.de/kat/BearingDataCenter/`，文件时间戳 2016，31 个 `.rar`：K001–K006 健康 / KA… 人工损伤 / KB… / KI…）；Zenodo `10.5281/zenodo.15845309` 是**第三方镜像**（CC-BY-4.0，无说明文字），**引用必须指向原始数据集论文**；仍缺：原始论文的单元定义核实 + 预注册 |
 | G5 版本纪律 | ✅ | V1-10 未升版本号，只更新注册表 / CHANGELOG / PROJECT_STATUS（按 §6 规则） |
 
 ### 8.1 EXP-V1-10 对门控的影响（2026-09-17）
