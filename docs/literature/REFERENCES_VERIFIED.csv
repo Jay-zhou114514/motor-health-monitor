@@ -1,0 +1,17 @@
+title,authors,year,venue,doi,type,source,key,queried_doi,verified
+Current Time Series Anomaly Detection Benchmarks are Flawed and are Creating the Illusion of Progress,Wu Renjie; Keogh Eamonn,2021,IEEE Transactions on Knowledge and Data Engineering,10.1109/tkde.2021.3112126,journal-article,crossref,wu_keogh_2021,10.1109/TKDE.2021.3112126,True
+Cross-validation pitfalls when selecting and assessing regression and classification models,Krstajic Damjan; Buturovic Ljubomir J; Leahy David E; Thomas Simon,2014,Journal of Cheminformatics,10.1186/1758-2946-6-10,journal-article,crossref,cv_pitfalls_2014,10.1186/1758-2946-6-10,True
+Minimum sample size determination of vibration signals in machine learning approach to fault diagnosis using power analysis,Indira V.; Vasanthakumari R.; Sugumaran V.,2010,Expert Systems with Applications,10.1016/j.eswa.2010.06.068,journal-article,crossref,min_sample_eswa_2010,10.1016/j.eswa.2010.06.068,True
+Determination of minimum sample size for fault diagnosis of automobile hydraulic brake system using power analysis,Indira V.; Vasanthakumari R.; Jegadeeshwaran R.; Sugumaran V.,2015,"Engineering Science and Technology, an International Journal",10.1016/j.jestch.2014.09.007,journal-article,crossref,min_sample_jestch_2015,10.1016/j.jestch.2014.09.007,True
+A Robust Framework for Evaluation of Unsupervised Time-Series Anomaly Detection,Gungor Onat; Rios Amanda; Mudgal Priyanka; Ahuja Nilesh; Rosing Tajana,2024,Lecture Notes in Computer Science,10.1007/978-3-031-78395-1_4,book-chapter,crossref,robust_eval_2024,10.1007/978-3-031-78395-1_4,True
+PATE: Proximity-Aware Time Series Anomaly Evaluation,Ghorbani Ramin; Reinders Marcel J.T.; Tax David M.J.,2024,Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining,10.1145/3637528.3671971,proceedings-article,crossref,pate_2024,10.1145/3637528.3671971,True
+A problem-oriented taxonomy of evaluation metrics for time series anomaly detection,Yang Kaixiang; Liu Jiarong; Song Yupeng; Yang Shuanghua; Zhou Yujue,2026,Neurocomputing,10.1016/j.neucom.2026.134547,journal-article,crossref,taxonomy_2026,10.1016/j.neucom.2026.134547,True
+,,,,,,,vieira_2026,10.1016/j.ymssp.2025.114640,False
+Towards a Rigorous Evaluation of Time-series Anomaly Detection,Siwon Kim; Kukjin Choi; Hyun-Soo Choi; Byunghan Lee; Sungroh Yoon,2021,arXiv,arXiv:2109.05257,preprint,arxiv,kim_2021,arXiv:2109.05257,True
+Why Ranking Anomaly Detection Algorithms Isn't as Reliable as You May Think,Simon Klüttermann; Jérôme Rutinowski; Frederik Polachowski; Alice Kirchheim,2026,arXiv,arXiv:2608.04613,preprint,arxiv,rank_instability_2026,arXiv:2608.04613,True
+MSAD: A Deep Dive into Model Selection for Time series Anomaly Detection,Emmanouil Sylligardos; John Paparrizos; Themis Palpanas; Pierre Senellart; Paul Boniol,2025,arXiv,arXiv:2510.26643,preprint,arxiv,msad_2025,arXiv:2510.26643,True
+mTSBench: Benchmarking Multivariate Time Series Anomaly Detection and Model Selection at Scale,Xiaona Zhou; Constantin Brif; Ismini Lourentzou,2025,arXiv,arXiv:2506.21550,preprint,arxiv,mtsbench_2025,arXiv:2506.21550,True
+TAB: Unified Benchmarking of Time Series Anomaly Detection Methods,Xiangfei Qiu; Zhe Li; Wanghui Qiu; Shiyan Hu; Lekui Zhou; Xingjian Wu; Zhengyu Li; Chenjuan Guo; Aoying Zhou; Zhenli Sheng; Jilin Hu; Christian S. Jensen; Bin Yang,2025,arXiv,arXiv:2506.18046,preprint,arxiv,tab_2025,arXiv:2506.18046,True
+,,,,,,,bouthillier_2021,,False
+,,,,,,,fancy_flawed_2024,,False
+,,,,,,,knap_2026,,False
