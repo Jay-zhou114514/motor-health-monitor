@@ -18,10 +18,10 @@ import numpy as np
 import pandas as pd
 import scipy.io as sio
 
+from config import DATASET_ROOT
 from features import extract_features
 
-ROOT = Path(__file__).resolve().parents[1]
-PADERBORN_ROOT = ROOT / "data" / "raw" / "paderborn" / "extracted"
+PADERBORN_ROOT = DATASET_ROOT / "paderborn" / "extracted"
 HEALTHY_BEARINGS = ("K001", "K002", "K003", "K004", "K005", "K006")
 CONDITIONS = ("N15_M07_F10", "N09_M07_F10", "N15_M01_F10", "N15_M07_F04")
 DEFAULT_CONDITION = "N15_M07_F10"
