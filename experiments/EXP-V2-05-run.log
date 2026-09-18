@@ -1,0 +1,36 @@
+[PRONOSTIA/C1] 轴承 7 颗，k_max=4
+    [PRONOSTIA/C1] done
+[PRONOSTIA/C2] 轴承 7 颗，k_max=4
+    [PRONOSTIA/C2] done
+[PRONOSTIA/C3] 轴承 3 颗，k_max=2
+    [PRONOSTIA/C3] done
+[XJTU-SY/35Hz12kN] 轴承 4 颗，k_max=3
+    [XJTU-SY/35Hz12kN] done
+[XJTU-SY/37.5Hz11kN] 轴承 4 颗，k_max=3
+    [XJTU-SY/37.5Hz11kN] done
+[XJTU-SY/40Hz10kN] 轴承 5 颗，k_max=4
+    [XJTU-SY/40Hz10kN] done
+
+=== 工况内 S3：SD（pp）随 k 的变化 ===
+k_bearings                1      2      3      4
+dataset   condition                             
+PRONOSTIA C1          23.89  13.49  10.45   7.64
+          C2          24.61  18.24  16.60  14.01
+          C3          24.29   8.29    NaN    NaN
+XJTU-SY   35Hz12kN    44.43  30.43  25.70    NaN
+          37.5Hz11kN  36.28  34.66  31.16    NaN
+          40Hz10kN    39.61  36.12  20.02  20.69
+
+=== 判据 ===
+  PRONOSTIA/C1: k=1 SD=23.89  k=4 SD=7.64  R=3.13
+  PRONOSTIA/C2: k=1 SD=24.61  k=4 SD=14.01  R=1.76
+  PRONOSTIA/C3: k=1 SD=24.29  k=2 SD=8.29  R=2.93
+  XJTU-SY/35Hz12kN: k=1 SD=44.43  k=3 SD=25.70  R=1.73
+  XJTU-SY/37.5Hz11kN: k=1 SD=36.28  k=3 SD=31.16  R=1.16
+  XJTU-SY/40Hz10kN: k=1 SD=39.61  k=4 SD=20.69  R=1.91
+Y1（SD 随 k 下降）: 6/6
+Y2（SD(kmax) < SD(k=1)）: 6/6
+
+=== Y3：工况内 R_within vs 跨工况 R_mixed（V2-04）===
+  PRONOSTIA: R_within=2.60  R_mixed=2.61  比值=1.00 -> 独立单元效应独立成立
+  XJTU-SY: R_within=1.60  R_mixed=2.94  比值=0.55 -> 效应主要来自工况多样性
