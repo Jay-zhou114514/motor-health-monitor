@@ -37,6 +37,8 @@ EXP-V1-01-threshold-sensitivity.csv    原始结果表（可复算）
 | EXP-V1-11 | 阈值估计噪声下限与样本量处方 | 已完成（2026-09-17；P1 成立、P2/P3 不成立） | src/exp_v1_11_sample_size_scaling.py |
 | EXP-V2-01 | 跨数据体系缩放：名义 n vs 有效信息（Paderborn，120 条真实记录） | 已完成（2026-09-17；P2/P3 成立、P1/P4 判定实现有缺陷） | src/exp_v2_01_cross_dataset_scaling.py |
 | EXP-V2-02 | 跨工况稳健性（4 工况） | 已完成（2026-09-17；方向 3/4 稳健、数值条件依赖） | src/exp_v2_02_cross_condition.py |
+| EXP-V2-03 | within-bearing vs bearing-level holdout | 已完成（2026-09-18；口径使误报 0%→40.6%） | src/exp_v2_03_bearing_level_holdout.py |
+| EXP-V2-04 | 健康阶段定义不确定性 + 独立单元数（XJTU-SY + PRONOSTIA） | 已完成（2026-09-18；X1/X6 成立） | src/exp_v2_04_xjtu_pronostia.py |
 
 
 
