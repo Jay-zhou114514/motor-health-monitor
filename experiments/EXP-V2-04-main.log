@@ -1,0 +1,78 @@
+特征缓存：1894 行；数据集 ['PRONOSTIA', 'XJTU-SY']
+PRONOSTIA: 纳入 17 颗，健康记录 957 条
+    S2 PRONOSTIA_main held=Bearing1_1 done
+    S2 PRONOSTIA_main held=Bearing1_2 done
+    S2 PRONOSTIA_main held=Bearing1_3 done
+    S2 PRONOSTIA_main held=Bearing1_4 done
+    S2 PRONOSTIA_main held=Bearing1_5 done
+    S2 PRONOSTIA_main held=Bearing1_6 done
+    S2 PRONOSTIA_main held=Bearing1_7 done
+    S2 PRONOSTIA_main held=Bearing2_1 done
+    S2 PRONOSTIA_main held=Bearing2_2 done
+    S2 PRONOSTIA_main held=Bearing2_3 done
+    S2 PRONOSTIA_main held=Bearing2_4 done
+    S2 PRONOSTIA_main held=Bearing2_5 done
+    S2 PRONOSTIA_main held=Bearing2_6 done
+    S2 PRONOSTIA_main held=Bearing2_7 done
+    S2 PRONOSTIA_main held=Bearing3_1 done
+    S2 PRONOSTIA_main held=Bearing3_2 done
+    S2 PRONOSTIA_main held=Bearing3_3 done
+    S3 PRONOSTIA_main held=Bearing1_1 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing1_2 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing1_3 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing1_4 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing1_5 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing1_6 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing1_7 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing2_1 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing2_2 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing2_3 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing2_4 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing2_5 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing2_6 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing2_7 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing3_1 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing3_2 (kmax=16) done
+    S3 PRONOSTIA_main held=Bearing3_3 (kmax=16) done
+XJTU-SY: 纳入 13 颗，健康记录 472 条
+    S2 XJTU-SY_main held=Bearing1_1 done
+    S2 XJTU-SY_main held=Bearing1_2 done
+    S2 XJTU-SY_main held=Bearing1_3 done
+    S2 XJTU-SY_main held=Bearing1_4 done
+    S2 XJTU-SY_main held=Bearing2_1 done
+    S2 XJTU-SY_main held=Bearing2_2 done
+    S2 XJTU-SY_main held=Bearing2_3 done
+    S2 XJTU-SY_main held=Bearing2_5 done
+    S2 XJTU-SY_main held=Bearing3_1 done
+    S2 XJTU-SY_main held=Bearing3_2 done
+    S2 XJTU-SY_main held=Bearing3_3 done
+    S2 XJTU-SY_main held=Bearing3_4 done
+    S2 XJTU-SY_main held=Bearing3_5 done
+    S3 XJTU-SY_main held=Bearing1_1 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing1_2 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing1_3 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing1_4 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing2_1 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing2_2 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing2_3 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing2_5 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing3_1 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing3_2 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing3_3 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing3_4 (kmax=12) done
+    S3 XJTU-SY_main held=Bearing3_5 (kmax=12) done
+
+=== 主分析汇总 ===
+  dataset            arm  n_train  k_bearings  mean_fp  sd_fp  folds   n  tag
+PRONOSTIA S2_new_records       20         NaN   0.0320 0.0815     17 850 main
+PRONOSTIA S2_new_records       60         NaN   0.0156 0.0373     17 850 main
+PRONOSTIA S2_new_records      160         NaN   0.0113 0.0298     17 850 main
+PRONOSTIA       S3_units       16        16.0   0.0364 0.0885     17 850 main
+PRONOSTIA       S3_units       20         1.0   0.1781 0.2310     17 850 main
+PRONOSTIA       S3_units       20         4.0   0.0542 0.1151     17 850 main
+  XJTU-SY S2_new_records       20         NaN   0.0516 0.1474     13 650 main
+  XJTU-SY S2_new_records       60         NaN   0.0359 0.1260     13 650 main
+  XJTU-SY S2_new_records      160         NaN   0.0138 0.0763     13 650 main
+  XJTU-SY       S3_units       12        12.0   0.0492 0.1396     13 650 main
+  XJTU-SY       S3_units       20         1.0   0.5079 0.4102     13 650 main
+  XJTU-SY       S3_units       20         4.0   0.0673 0.1948     13 650 main
