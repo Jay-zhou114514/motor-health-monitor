@@ -11,7 +11,7 @@
 | **外部数据根** | `E:\MotorHealthMonitorData` | — | 由 `src/config.py` 的 `EXTERNAL_DATA_ROOT` 指定 |
 | Paderborn | `E:\MotorHealthMonitorData\paderborn\` | 5.0 GB | `K001–K006.rar` + `extracted/`（480 条记录） |
 | PRONOSTIA / FEMTO-ST | `E:\MotorHealthMonitorData\pronostia\` | 0.7 GB（zip）+ 解压后更多 | `phm2012.zip` + `extracted/`（17 颗轴承） |
-| XJTU-SY | `E:\MotorHealthMonitorData\xjtu_sy\` | 10 GB 量级（待下载） | 15 颗轴承 |
+| XJTU-SY | `E:\MotorHealthMonitorData\xjtu_sy\XJTU-SY_Bearing_Datasets\` | **11.38 GB**（已解压） | 15 颗轴承 × 3 工况；CSV 带表头 |
 | IMS | 仓库内 `data/raw/ims/` | 22 MB | V1 全部实验用 |
 | MFPT（MathWorks） | 仓库内 `data/raw/{train,test}_data/` | 21 MB | — |
 
