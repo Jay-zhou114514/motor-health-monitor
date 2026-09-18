@@ -1,0 +1,56 @@
+[PRONOSTIA/C1] 轴承 7，k_max=4
+    [PRONOSTIA/C1] done
+[PRONOSTIA/C2] 轴承 7，k_max=4
+    [PRONOSTIA/C2] done
+[PRONOSTIA/C3] 轴承 3，k_max=2
+    [PRONOSTIA/C3] done
+[XJTU-SY/35Hz12kN] 轴承 4，k_max=3
+    [XJTU-SY/35Hz12kN] done
+[XJTU-SY/37.5Hz11kN] 轴承 4，k_max=3
+    [XJTU-SY/37.5Hz11kN] done
+[XJTU-SY/40Hz10kN] 轴承 5，k_max=4
+    [XJTU-SY/40Hz10kN] done
+
+=== SD（pp）随 k 的变化 ===
+
+[A_rms_3sigma]
+k_bearings                1      2      3      4
+dataset   condition                             
+PRONOSTIA C1          32.97  28.25  26.60  25.13
+          C2          44.51  40.51  38.33  33.26
+          C3          43.13  29.10    NaN    NaN
+XJTU-SY   35Hz12kN    48.21  41.49  32.83    NaN
+          37.5Hz11kN  47.95  47.66  43.41    NaN
+          40Hz10kN    47.33  45.16  35.76  26.08
+  均值误报（%）：
+k_bearings                1      2      3      4
+dataset   condition                             
+PRONOSTIA C1          23.69  15.98  13.82  11.83
+          C2          40.23  25.94  21.30  15.16
+          C3          43.07  19.92    NaN    NaN
+XJTU-SY   35Hz12kN    49.50  28.30  18.90    NaN
+          37.5Hz11kN  47.51  34.50  25.00    NaN
+          40Hz10kN    44.46  33.17  20.48  13.00
+
+[B_mahalanobis]
+k_bearings                1      2      3      4
+dataset   condition                             
+PRONOSTIA C1          35.42  31.31  28.41  25.19
+          C2          32.73  39.12  38.82  36.42
+          C3          22.52  38.33    NaN    NaN
+XJTU-SY   35Hz12kN     0.00  20.18  37.65    NaN
+          37.5Hz11kN  29.40  39.29  47.10    NaN
+          40Hz10kN    33.20  35.89  39.76  28.59
+  均值误报（%）：
+k_bearings                 1      2      3      4
+dataset   condition                              
+PRONOSTIA C1           66.83  46.60  35.74  27.45
+          C2           76.30  49.05  41.04  31.50
+          C3           89.84  45.71    NaN    NaN
+XJTU-SY   35Hz12kN    100.00  93.80  75.03    NaN
+          37.5Hz11kN   86.03  71.11  53.70    NaN
+          40Hz10kN     84.68  75.94  50.16  31.15
+
+=== 判据 ===
+  A_rms_3sigma: Z1=6/6  Z2=6/6
+  B_mahalanobis: Z1=2/6  Z2=2/6
