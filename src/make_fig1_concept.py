@@ -10,6 +10,17 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
+matplotlib.rcParams.update({
+    "svg.fonttype": "none",   # 文字在 SVG 中保持可编辑
+    "pdf.fonttype": 42,       # TrueType 子集，PDF 中可编辑
+    "ps.fonttype": 42,
+    "font.size": 8,
+})
+
+# 强制：多面板图必须调用渲染期面板对齐门（nature-figure 规范）
+import sys as _sys
+_sys.path.insert(0, r"C:\Users\32597\.codex\skills\nature-figure\scripts")
+from audit_panel_alignment import require_matplotlib_panel_alignment  # noqa: E402
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle
 
@@ -22,12 +33,12 @@ C_ALARM = "#d65f5f"
 C_OK = "#5f9e6e"
 
 
-def bearing(ax, x, y, w=0.42, h=0.42, label=None, fmt="train"):
+def bearing(ax, x, y, w=0.78, h=0.62, label=None, fmt="train"):
     color = C_TRAIN if fmt == "train" else C_TEST
-    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.02,rounding_size=0.06",
+    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.02,rounding_size=0.10",
                                 linewidth=1.0, edgecolor="#444444", facecolor=color, zorder=3))
     if label:
-        ax.text(x + w / 2, y + h / 2, label, ha="center", va="center", fontsize=7, zorder=4)
+        ax.text(x + w / 2, y + h / 2, label, ha="center", va="center", fontsize=6, zorder=4)
 
 
 def panel_frame(ax, title, subtitle):
@@ -39,7 +50,7 @@ def panel_frame(ax, title, subtitle):
 
 
 def main() -> None:
-    fig, axes = plt.subplots(1, 3, figsize=(15.5, 5.6))
+    fig, axes = plt.subplots(1, 3, figsize=(7.2, 4.8))   # 183 mm x 122 mm
 
     # ---------------- (a) Scope ----------------
     ax = axes[0]
@@ -47,7 +58,7 @@ def main() -> None:
                 "same detector, same data, different split")
     ax.text(0.1, 4.35, "within-bearing", fontsize=9, fontweight="bold")
     for i in range(4):
-        bearing(ax, 0.3 + i * 1.05, 3.55, label=f"#{i+1}")
+        bearing(ax, 0.25 + i * 1.22, 3.55, label=f"#{i+1}")
     bearing(ax, 4.6, 3.55, label="#1", fmt="test")
     bearing(ax, 5.65, 3.55, label="#2", fmt="test")
     ax.text(0.3, 3.25, "train: recordings 1\u201316 of each bearing", fontsize=7.5, color="#333333")
@@ -59,12 +70,12 @@ def main() -> None:
     ax.plot([0.3, 9.7], [2.35, 2.35], color="#bbbbbb", linewidth=1)
     ax.text(0.1, 2.02, "bearing-level holdout", fontsize=9, fontweight="bold")
     for i in range(5):
-        bearing(ax, 0.3 + i * 1.05, 1.20, label=f"#{i+1}")
-    beta = FancyArrowPatch((5.2, 1.45), (6.4, 1.45), arrowstyle="-|>",
+        bearing(ax, 0.25 + i * 1.22, 1.20, label=f"#{i+1}")
+    beta = FancyArrowPatch((5.7, 1.50), (6.85, 1.50), arrowstyle="-|>",
                            mutation_scale=14, color="#a05020", linewidth=1.6)
     ax.add_patch(beta)
-    bearing(ax, 6.6, 1.20, label="#6", fmt="test")
-    ax.text(5.25, 0.86, "held-out bearing", fontsize=7.5, color="#a05020")
+    bearing(ax, 6.95, 1.20, label="#6", fmt="test")
+    ax.text(5.60, 0.78, "held-out bearing", fontsize=7.5, color="#a05020")
     ax.text(0.3, 1.90, "train: all recordings of five bearings", fontsize=7.5, color="#333333")
     ax.text(0.3, 0.35, "reported false-alarm rate: 40.63%  (folds 0.4\u201397.1%)",
             fontsize=9.5, fontweight="bold", color=C_ALARM)
@@ -77,11 +88,11 @@ def main() -> None:
     for i in range(5):
         fmt = "train" if i == 0 else "none"
         if fmt == "train":
-            bearing(ax, 0.3 + i * 1.05, 3.55, label="20")
+            bearing(ax, 0.25 + i * 1.22, 3.55, label="20")
         else:
-            ax.add_patch(Rectangle((0.3 + i * 1.05, 3.55), 0.42, 0.42, linewidth=0.6,
+            ax.add_patch(Rectangle((0.25 + i * 1.22, 3.55), 0.42, 0.42, linewidth=0.6,
                                    edgecolor="#cccccc", facecolor="none", linestyle=":"))
-    ax.text(4.4, 3.66, "SD \u2248 23\u201338 pp", fontsize=9, color=C_ALARM, fontweight="bold")
+    ax.text(4.95, 3.55, "SD \u2248 23\u201338 pp", fontsize=9, color=C_ALARM, fontweight="bold")
     ax.text(0.3, 3.22, "mean FP at k=1: 54\u201358% (XJTU-SY), 17\u201321% (PRONOSTIA)",
             fontsize=7.5, color="#333333")
 
@@ -89,11 +100,11 @@ def main() -> None:
     ax.text(0.1, 2.52, "4 training bearings", fontsize=9, fontweight="bold")
     for i in range(5):
         if i < 4:
-            bearing(ax, 0.3 + i * 1.05, 1.72, label="5")
+            bearing(ax, 0.25 + i * 1.22, 1.72, label="5")
         else:
-            ax.add_patch(Rectangle((0.3 + i * 1.05, 1.72), 0.42, 0.42, linewidth=0.6,
+            ax.add_patch(Rectangle((0.25 + i * 1.22, 1.72), 0.42, 0.42, linewidth=0.6,
                                    edgecolor="#cccccc", facecolor="none", linestyle=":"))
-    ax.text(4.4, 1.83, "SD \u2248 8\u201314 pp", fontsize=9, color=C_OK, fontweight="bold")
+    ax.text(4.95, 1.70, "SD \u2248 8\u201314 pp", fontsize=9, color=C_OK, fontweight="bold")
     ax.text(0.3, 1.36, "test set: the same held-out bearing in both cases", fontsize=7.5,
             color="#333333")
     ax.text(0.3, 0.72, "3\u03c3 RMS 6/6 and Isolation Forest 6/6 support the effect;",
@@ -127,10 +138,17 @@ def main() -> None:
     fig.suptitle("Three faces of evaluation uncertainty in healthy-data-only bearing "
                  "anomaly detection", fontsize=13, y=0.985)
     fig.tight_layout(rect=(0, 0, 1, 0.95))
-    path = OUT / "fig1_three_faces.png"
-    fig.savefig(path, dpi=200)
+    fig.canvas.draw()
+    require_matplotlib_panel_alignment(fig)   # 对齐门：不等宽/不等高会抛错
+    png = OUT / "fig1_three_faces.png"
+    pdf = OUT / "fig1_three_faces.pdf"
+    svg = OUT / "fig1_three_faces.svg"
+    fig.savefig(png, dpi=600)      # 600 dpi 栅格（nature-figure 默认下限）
+    fig.savefig(pdf)               # 矢量（投稿主件）
+    fig.savefig(svg)               # 矢量（可编辑）
     plt.close(fig)
-    print(f"saved: {path}")
+    for f in (png, pdf, svg):
+        print(f"saved: {f}")
 
 
 if __name__ == "__main__":
