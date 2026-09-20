@@ -1,0 +1,23 @@
+# EXP-V2-03  L3 re-run verification
+
+Pre-rerun hashes: EXP-V2-03-hashes-BEFORE-rerun.txt
+Re-run wrote to outputs/ (the script uses config OUTPUT_DIR); the experiments/*.csv files are the archived copies from 2026-09-18.
+
+EXP-V2-03-summary.csv vs outputs/exp_v2_03_summary.csv
+  sha256 (re-run)  a2ec54f917d25c82e79d55300576e9146081ecab100d99d16c9325d46794f16e
+  sha256 (archived) a2ec54f917d25c82e79d55300576e9146081ecab100d99d16c9325d46794f16e
+  timestamp guard PASS
+  verdict: byte-identical
+
+EXP-V2-03-curve.csv vs outputs/exp_v2_03_curve.csv
+  sha256 (re-run)  fb73177c5ab552380b35714ddd6c22187a22432ed59f59cb6661a67e6b8844f3
+  sha256 (archived) fb73177c5ab552380b35714ddd6c22187a22432ed59f59cb6661a67e6b8844f3
+  timestamp guard PASS
+  verdict: byte-identical
+
+EXP-V2-03-regime_comparison.csv vs outputs/exp_v2_03_regime_comparison.csv
+  sha256 (re-run)  e6db40e7ba8a70767d7b7cfd01c2f03d09cef15d5c9af03edcf4c5e0b322ff11
+  sha256 (archived) e6db40e7ba8a70767d7b7cfd01c2f03d09cef15d5c9af03edcf4c5e0b322ff11
+  timestamp guard PASS
+  verdict: byte-identical
+
