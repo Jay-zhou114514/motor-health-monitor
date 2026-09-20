@@ -1,0 +1,8 @@
+analysis,dataset,detector,n,observed,ci_low,ci_high,p_value,note
+3.1 holdout fold means,Paderborn,iForest,6,40.63,11.96,72.74,,"mean of six fold means (median 35.48); values [0.0, 0.4, 1.55, 69.4, 75.35, 97.1]"
+3.2 k=1 vs k_max spread (between-fold),both,Isolation Forest,30/30,0.05,,,0.1821,"permutation test on the SD difference; per-cell ratios [np.float64(0.48), np.float64(0.69), np.float64(1.28), np.float64(1.52), np.float64(2.3), np.float64(1.33)]"
+3.2 k=1 vs k_max spread (between-fold),both,A_rms_3sigma,30/30,0.03,,,0.5097,"permutation test on the SD difference; per-cell ratios [np.float64(1.09), np.float64(0.93), np.float64(0.89), np.float64(0.97), np.float64(1.02), np.float64(0.73)]"
+3.2 k=1 vs k_max spread (between-fold),both,B_mahalanobis,30/30,0.2,,,0.0001,"permutation test on the SD difference; per-cell ratios [np.float64(1.6), np.float64(2.16), np.float64(3.38), np.float64(3.31), np.float64(1.96)]"
+3.6 variance component,IMS 1st_test,iForest,50,5.2,3.6,6.61,,bootstrap CI of the SD of the reported rate
+3.6 variance component,IMS 1st_test,iForest,50,4.39,3.53,5.12,,bootstrap CI of the SD of the reported rate
+3.6 variance component,IMS 1st_test,iForest,50,5.18,3.6,6.58,,bootstrap CI of the SD of the reported rate
