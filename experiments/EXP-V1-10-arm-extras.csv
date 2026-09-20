@@ -1,0 +1,4 @@
+design,method,n_rows,zero_min_share,tie_share,distinct_replicate_ids,note
+A,forest,250,0.84,0.9,200,"pooled over all rows of this design/method; the archived per-replicate file carries no arm label, so the R=50 and R=200 design-A arms cannot be separated (200 distinct replicate ids for 250 rows)"
+A,svm,50,0.0,0.8,50,"pooled over all rows of this design/method; the archived per-replicate file carries no arm label, so the R=50 and R=200 design-A arms cannot be separated (50 distinct replicate ids for 50 rows)"
+B,forest,50,0.78,0.86,50,"pooled over all rows of this design/method; the archived per-replicate file carries no arm label, so the R=50 and R=200 design-A arms cannot be separated (50 distinct replicate ids for 50 rows)"
