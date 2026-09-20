@@ -78,8 +78,12 @@
    - **Layer 2 待 venue 确定后执行**，需要 page limit / paper type / abstract length /
      section structure / reference style 五项。注意：brief 原引用的 `nature-polishing` skill
      在本机不存在。
-4. **投稿会议决定**——PHM Europe / PHM Conference / ICPHM；并决定是否等 V2 跨体系补齐。
-   这会决定篇幅上限与润色力度，建议先定这个再润色。
+4. **投稿语言：英文稿**（2026-09-20 用户决定）；`PAPER_v1.0_中文版.md` 降为**自用理解稿**，
+   不投稿。会议待定：ISDMD 2026（温州 11-20~22，JPCS/EI，日期信息冲突需确认）为首选匹配，
+   CSRSE 2026（杭州 12-12~13，11-10 截止，接受英文）为稳妥备选；**禁止一稿两投**。
+   英文稿投稿前必做：修 §5.1/§7 的 "rather than an order of magnitude" 残句；补两处归档产物；
+   关键比较补置信区间或置换检验；按目标会议模板排版核对页数。
+
 5. **待办**：本会话已提交并推送 4 个 commit（`ce1e81a`、`80e1f5e`、`0745b8d`、`4403120`）；
    2026-09-20 两次 `git push` 均因 GitHub 连接被重置而失败，需稍后重推。
 
