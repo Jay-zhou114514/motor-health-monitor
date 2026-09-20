@@ -58,15 +58,24 @@
    - **RC-M2（已证实）**：EXP-V1-11/V2-01/V2-02 并无 L1+L2/哈希基线记录
      （`verify_paper_experiments.py` 只覆盖 V1-05~V1-10）；稿件已改为如实声明。
    - RC-M3 / RC-M4 与 §5.5 残句已按最小改法修正。
+   - **作者已裁决第二层（单元数）主张的收紧**：改为「稳定性依赖于如何定义与估计跨折变异；
+     按折间变异评估时预注册的 80% 稳定性标准未达到」（iForest 2/6、3σ RMS 4/6；池化口径的
+     6/6 降为 sensitivity）。已落到 Abstract / §3.2 / §7 / Fig.1 图注与 CLAIM_EVIDENCE_MAP 的 C9。
 
 2. **补两处归档产物**（第 4 轮 RC-M3 / RC-m2 的残留，需要写代码或补列）：
    - 把五条健康阶段规则的 SD(k_max) 以**带规则标签的 CSV** 落盘（当前只有散文表格）；
    - 在 `EXP-V1-10` 臂级汇总里补 zero-minimum 占比列，并给复制文件加 arm 列
      （现在 R=50 与 R=200 两臂无法被第三方分离）。
-3. **语言润色**——注意：brief 原先引用的 `nature-polishing` skill **在本机并不存在**
-   （`~/.codex/skills` 下无该目录）。可选替代：① 新安装的 `humanizer` / `humanizer-zh`
-   （去 AI 写作痕迹，偏通用散文）；② `nature-writing`、`research-paper-writing`
-   （偏学术结构，非纯语言）；③ 先安装 `nature-polishing` 再润色。**需人工选定后再动手**。
+3. **语言润色分两层执行（2026-09-20 定）**：
+   - **Layer 1 已完成**：`humanizer` / `humanizer-zh` 扫描，**只出清单、不改正文** →
+     `conference-track/POLISH_L1_humanizer_scan.md`（脚本 `POLISH_L1_scan.py`、原始输出 `.txt`）。
+     结论：词汇层干净；问题集中在 §3.6 四段同构开场、元话语密度、27 句超长句、
+     三组术语混用（false-alarm/false-positive、recording(s)/record(s)、healthy-phase rule/boundary）。
+   - **待修（不等 venue）**：L293（§5.1）与 L404（§7）的
+     `3.5-fold rather than an order of magnitude` —— RB-M2 要求删除的「下界当上界」残句。
+   - **Layer 2 待 venue 确定后执行**，需要 page limit / paper type / abstract length /
+     section structure / reference style 五项。注意：brief 原引用的 `nature-polishing` skill
+     在本机不存在。
 4. **投稿会议决定**——PHM Europe / PHM Conference / ICPHM；并决定是否等 V2 跨体系补齐。
    这会决定篇幅上限与润色力度，建议先定这个再润色。
 5. **待办**：本会话已提交并推送 4 个 commit（`ce1e81a`、`80e1f5e`、`0745b8d`、`4403120`）；
