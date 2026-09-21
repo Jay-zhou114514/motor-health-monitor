@@ -43,8 +43,8 @@ P6 观察值落在 N1 零模型 5–95% 区间 [0.667, 0.667]：1.000 -> 不成�
    N2 零模型 5–95% 区间：[0.367, 0.967]
 P7 设计 B 标准差 >= 设计 A：0.0412 vs 0.0412 -> 成立
 
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_replicates.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_null.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_summary.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_10_selection_uncertainty.png
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_run_smoke.log
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_replicates.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_null.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_summary.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_10_selection_uncertainty.png
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_10_run_smoke.log

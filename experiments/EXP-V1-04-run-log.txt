@@ -25,5 +25,5 @@ RMS + kurtosis + centroid           3      3.781643e+09   2.813358      0.025634
 kurtosis + centroid      1.975406e+08   1 0.0909 0.9841      0.025266
      RMS + centroid      3.549515e+09   8 0.7273 0.8857      0.042393
 
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\conditioning_control.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\conditioning_control.png
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\conditioning_control.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\conditioning_control.png

@@ -24,6 +24,6 @@ Q2（稳定准则把问题组膨胀比降到 <1 且不明显增加对照 FP）�
 Q3（不同准则选出的 δ 差异较大，平均极差=0.433）：成立
 V1.06-B 总体判定：支持
 
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_06_geometry.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_06_delta_selection.csv
-图表目录：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_06_geometry.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_06_delta_selection.csv
+图表目录：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures

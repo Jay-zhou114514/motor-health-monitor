@@ -7,7 +7,7 @@
 
 API key 读取顺序（均不写入仓库）：
 1. 环境变量 SCOPUS_API_KEY
-2. 本机文件 C:\\Users\\32597\\.codex\\scopus_api_key.txt
+2. 本机文件 C:\\Users\\<user>\\.codex\\scopus_api_key.txt
 
 输出：
 - docs/literature/scopus_query_counts.csv

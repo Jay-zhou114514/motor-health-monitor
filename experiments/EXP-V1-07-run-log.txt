@@ -68,7 +68,7 @@ IMS 4th_test RMS + centroid (problem) cond_target          0.422521      0.16666
 IMS 4th_test RMS + centroid (problem)   empirical          0.721494      0.277778      6
 IMS 4th_test RMS + centroid (problem) ledoit_wolf          0.422521      0.166667      6
 
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_07_folds.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_07_summary.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_07_folds_w0.5.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_07_cross_dataset.png
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_07_folds.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_07_summary.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_07_folds_w0.5.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_07_cross_dataset.png

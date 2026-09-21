@@ -28,7 +28,7 @@ matplotlib.rcParams.update({
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle
 
-sys.path.insert(0, r"C:\Users\32597\.codex\skills\nature-figure\scripts")
+sys.path.insert(0, r"<WORKDIR>\.codex\skills\nature-figure\scripts")
 from audit_panel_alignment import require_matplotlib_panel_alignment  # noqa: E402
 
 OUT = Path(__file__).resolve().parents[1] / "docs" / "figures"

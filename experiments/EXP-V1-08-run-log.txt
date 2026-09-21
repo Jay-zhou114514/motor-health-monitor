@@ -27,6 +27,6 @@ P2（MFPT 上现代方法在 10% 误报预算下召回 ≥ 简单方法）：2/2
 MFPT 召回最高的方法：{'MFPT': 'A: 3-sigma RMS'}
 P3（不存在普适最优方法）：成立
 
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_08_folds.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_08_summary.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_08_baselines.png
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_08_folds.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_08_summary.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_08_baselines.png

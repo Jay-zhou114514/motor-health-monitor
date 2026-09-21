@@ -32,6 +32,6 @@ P4（次要）：折间选参不稳定（模态占比 < 50%）的组合数 = 1 �
        batch                      method  modal_share
 IMS 1st_test D: Isolation Forest (tuned)        0.333
 
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_09_folds.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_09_summary.csv
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_09_hyperparams.png
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_09_folds.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\exp_v1_09_summary.csv
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures\exp_v1_09_hyperparams.png

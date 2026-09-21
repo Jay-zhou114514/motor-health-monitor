@@ -78,7 +78,7 @@ EXP-<阶段>-<两位序号>      例如 EXP-V1-04
 
 会议线 / 期刊线的计划、状态、论文骨架与投稿门槛放在独立仓库，便于命名区分与完整性维护：
 
-<https://github.com/Jay-zhou114514/motor-health-monitor-papers>
+<https://github.com/<ACCOUNT>/motor-health-monitor-papers>
 
 - `conference-track/`：会议线（最小完整闭环）
 - `journal-track/`：期刊线（机制验证、稳健性、跨数据集、真实实验）

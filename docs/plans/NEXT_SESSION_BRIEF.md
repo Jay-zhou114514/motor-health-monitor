@@ -14,8 +14,8 @@
 
 | 用途 | 路径 |
 | --- | --- |
-| Master（唯一事实来源） | `C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor` |
-| 论文库（会议线/期刊线） | `C:\Users\32597\Documents\Codex\2026-09-15\github\motor-health-monitor-papers` |
+| Master（唯一事实来源） | `<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor` |
+| 论文库（会议线/期刊线） | `<WORKDIR>\Documents\Codex\2026-09-15\github\motor-health-monitor-papers` |
 | 数据根 | `E:\MotorHealthMonitorData`（paderborn 4.9 GB / pronostia 3.0 GB / xjtu_sy 11.4 GB） |
 | 兜底 | `src/config.py` 的 `DATASET_ROOT` 在 E 盘缺失时**回退**到仓库内 `data/raw` |
 
@@ -94,7 +94,7 @@
 - V1-05~09 有 L1+L2 与哈希基线，**未做 L3 重跑**；
 - **MFPT 官方著录未确认**（官方页未提供、MathWorks 403）→ 用分发方脚注；
 - **中文文献与 PHM 会议集未覆盖** → 已在检索范围声明中写明；
-- **无自采数据**（A+C 决定：自采作红鸟展示项，不进本论文）。
+- **无自采数据**（A+C 决定：自采数据不进本论文）。
 
 ## 6. 有效的方法学结论（供新会话快速校准）
 

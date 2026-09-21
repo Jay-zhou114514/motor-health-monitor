@@ -35,5 +35,5 @@ crest + centroid (counterexample)     empirical 0.0000      4.244190e+05   2.446
 crest + centroid (counterexample)   ledoit_wolf 0.2201      8.084641e+00   2.513558   1 0.0909 0.9841            0.311
 crest + centroid (counterexample) shrinkage_loo 0.0000      4.244190e+05   2.446857   1 0.0909 0.9841            0.414
 
-已保存：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs
-图表目录：C:\Users\32597\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures
+已保存：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs
+图表目录：<WORKDIR>\Documents\Codex\2026-09-06\github\motor-health-monitor\outputs\figures
