@@ -41,11 +41,5 @@ EXP-V1-01-threshold-sensitivity.csv    原始结果表（可复算）
 | EXP-V2-04 | 健康阶段定义不确定性 + 独立单元数（XJTU-SY + PRONOSTIA） | 已完成（2026-09-18；X1/X6 成立） | src/exp_v2_04_xjtu_pronostia.py |
 | EXP-V2-05 | 工况内分层：拆解单元数与工况多样性的混杂 | 已完成（2026-09-19；Y1/Y2=6/6；三层验证通过） | src/exp_v2_05_within_condition.py |
 | EXP-V2-06 | 第二/第三个检测器（3σ RMS / 马氏） | 已完成（2026-09-19；RMS 6/6、马氏饱和不可检验；三层验证通过） | src/exp_v2_06_multi_detector.py |
-
-
-
-
-
-
-
-
+- EXP-V3-01-preregistration.md + 修订 1/2/3 —— 单元级阈值校准（ULTC / 部分池化）：**三次受控否定**，方法路线按预注册终止；记录见 EXP-V3-01-unit-calibration.md
+- EXP-V3-02-preregistration.md —— 信任判定器（元分析，使用已归档单元级结果）
