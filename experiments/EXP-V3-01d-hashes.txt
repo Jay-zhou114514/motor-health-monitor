@@ -1,0 +1,22 @@
+# EXP-V3-01d  L3 确定性重跑比对
+
+快照：outputs/L3_v301d_before_*.csv（重跑前）
+重跑：outputs/exp_v3_01d_*.csv（同脚本、同种子）
+规则：先逐字节比对；若不同，则按列比对并排除非确定性列（计时/CPU）。
+
+exp_v3_01d_runs.csv
+  sha256 (rerun)  1c77fbf3478167200d37d23f84300787844f97c57c8d07c1bb2b5b2e29712bca
+  sha256 (before) 1c77fbf3478167200d37d23f84300787844f97c57c8d07c1bb2b5b2e29712bca
+  verdict: byte-identical
+
+exp_v3_01d_summary.csv
+  sha256 (rerun)  cf832363a301feec09fbff9e4beed07c2fadfeb33e56883159a490e515776a88
+  sha256 (before) cf832363a301feec09fbff9e4beed07c2fadfeb33e56883159a490e515776a88
+  verdict: byte-identical
+
+exp_v3_01d_partial_P1_strict.csv
+  sha256 (rerun)  a41b58b509bdbcacf07210b6bd017c9f6b32fbd52c542b83df0258e3ae31c4cf
+  sha256 (before) a41b58b509bdbcacf07210b6bd017c9f6b32fbd52c542b83df0258e3ae31c4cf
+  verdict: byte-identical
+
+总判定：L3 通过

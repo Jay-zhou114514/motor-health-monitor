@@ -1,0 +1,13 @@
+file,R1_training_windows,R2_variability_sources,R3_tie_or_resolution,R4_new_vs_resampling,R5_independent_units,evidence_note
+1-s2.0-S0019057826003836-main.pdf,0.5,unknown,unknown,unknown,0.5,"给出每类 1000 样本与 XJTU-SY/CWRU；未见窗口/记录口径，未见单元留出说明"
+1-s2.0-S0360544226013897-main.pdf,unknown,0.5,unknown,unknown,unknown,"按场景构造数据划分（含随机抽 20%），但未见训练窗口数与单元定义"
+1-s2.0-S0378779626006668-main.pdf,0.5,1,unknown,unknown,unknown,"重复 10 次随机划分+不同种子并报告指标分布（R2 达标）；样本为 DGA 样本数，无物理单元"
+1-s2.0-S0950705126008166-main.pdf,0.5,unknown,unknown,unknown,unknown,"给出各类 105/45 训练/测试样本，未说明窗口构造与单元"
+1-s2.0-S0967066126003229-main.pdf,0.5,0.5,unknown,unknown,unknown,"给出 conformal 校准集规模 M 与窗口长度 W 的符号定义；有滑动窗口更新，但未给重采样变异数值"
+1-s2.0-S1270963826021346-main.pdf,0.5,0.5,unknown,unknown,0.5,"固定种子 42、80/10/10 划分（只做一次划分）；窗口数未给；齿轮-轴承耦合，单元未说明"
+1.pdf,1,1,0.5,unknown,unknown,"Diallo 等（J. Process Control 2025）：给出训练/校准样本数（如 200000/50000、500）；重复 10 次随机划分评估 FAR 稳定性；给出分位数取整式（分辨率线索）；仿真数据无物理单元"
+3.pdf,1,0.5,unknown,unknown,unknown,"给出 train/calibration/test 样本数（81660/40830/13611）；比较四种阈值方案；未见种子与划分变异"
+4.pdf,0.5,unknown,unknown,unknown,unknown,"按类别分别取 conformal 分位（Mondrian 式），给出每类校准样本数符号；无单元/窗口口径"
+7.pdf,unknown,1,unknown,unknown,unknown,"明确固定随机种子 42；用 bootstrap 重采样评估性能差异；另做 ECE 与后验重校准；未见训练窗口数与独立单元"
+Quantifying and mitigating alarm fatigue caused by fault detection systems.pdf,unknown,unknown,unknown,unknown,0.5,"汇总大量先验工作的 FAR/TPR；表中出现 CWRU 与 IMS 轴承数据，但未报告独立单元数与留出方式"
+almeida-et-al-2026-reliability-constrained-maintenance-optimization-for-safety-critical-wind-turbine-bearings-with.pdf,0.5,1,1,1,0.5,"**最接近本工作的文献**：K=5 组级（group-wise）折、明确说明重叠窗口带来的统计依赖、conformal 分位数含有限样本修正、跨折 mean±std；窗口数用 W(g) 符号表示；组=物理信号组"
